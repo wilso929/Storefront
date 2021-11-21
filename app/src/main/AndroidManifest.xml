@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:parentActivityName=".MainActivity"
+            android:name=".CreateAccount"
+            android:exported="false" />
+        <activity
+            android:parentActivityName=".MainActivity"
+            android:name=".CustomerLogin"
+            android:exported="false" />
+        <activity
+            android:parentActivityName=".MainActivity"
+            android:name=".OwnerLogin"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
