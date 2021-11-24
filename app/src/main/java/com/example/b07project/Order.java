@@ -1,18 +1,26 @@
 package com.example.b07project;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Order {
     String username;
-    HashSet<Product> products;
-    double price;
+    ArrayList<Product> products;
     boolean completed;
 
-    public Order(String username, HashSet<Product> products, double price, boolean completed) {
+    public Order(String username, ArrayList<Product> products, boolean completed) {
         this.username = username;
+        this.products.clear();
         this.products = products;
-        this.price = price;
         this.completed = completed;
+    }
+
+    public double calculate_price(){
+        double sum = 0;
+        for (Product p: products){
+            sum += p.price;
+        }
+        return sum;
     }
 
     public String getUsername() {
@@ -23,20 +31,13 @@ public class Order {
         this.username = username;
     }
 
-    public HashSet<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(HashSet<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
+        this.products.clear();
         this.products = products;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public boolean isCompleted() {

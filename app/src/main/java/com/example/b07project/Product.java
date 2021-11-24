@@ -1,5 +1,7 @@
 package com.example.b07project;
 
+import androidx.annotation.NonNull;
+
 public class Product {
     String name;
     String brand;
@@ -36,5 +38,10 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + " | Brand: " + brand + " | Price: $" + price;
     }
 }
