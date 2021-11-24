@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
     public void Create_Account(View view){
         Intent intent = new Intent(this, CreateAccount.class);
         startActivity(intent);
-
     }
 
+    public void Select_Store(View view) {
+        Intent intent = new Intent(this, SelectStore.class);
+        startActivity(intent);
+    }
 }
