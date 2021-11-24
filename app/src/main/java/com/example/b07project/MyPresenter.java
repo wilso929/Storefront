@@ -41,10 +41,8 @@ public class MyPresenter implements Contract.Presenter{
 
     }
 
-
-    public void Vaildlogin(String username){
-        view.Alert("Yay", "you did it");
-
+    public void Vaildlogin(String username, String type){
+        view.NextPage(username, type);
     }
 
     public void Invaildlogin(){
@@ -54,6 +52,7 @@ public class MyPresenter implements Contract.Presenter{
     public void Create_Failed() {
         view.Alert("Username Invalid", "Username already exists.");
     }
+
 
     public boolean Authenticate(String username, String password){
         Pattern name = Pattern.compile("[a-zA-Z0-9]{7,}");

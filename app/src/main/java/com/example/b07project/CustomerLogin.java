@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,11 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CustomerLogin extends AppCompatActivity implements Contract.View {
 
     private Contract.Presenter presenter;
+    public static final String USERNAME = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_login);
+        setContentView(R.layout.activity_customer_login);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new MyPresenter(new MyModel(), this);
@@ -40,6 +42,10 @@ public class CustomerLogin extends AppCompatActivity implements Contract.View {
         builder.setMessage(msg);
         builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
         builder.show();
+    }
+
+    public void NextPage(String username, String type){
+        Alert("Yay", "You did it");
     }
 
 }

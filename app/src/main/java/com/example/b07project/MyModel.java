@@ -28,7 +28,7 @@ public class MyModel implements Contract.Model{
                     if(task.getResult().exists()){
                         Owner owner = task.getResult().getValue(Owner.class);
                         if(password.equals(owner.getPassword())) {
-                            presenter.Vaildlogin(username);
+                            presenter.Vaildlogin(username, type);
 
                         }else{
                             presenter.Invaildlogin();
@@ -52,6 +52,7 @@ public class MyModel implements Contract.Model{
                     presenter.Create_Failed();
                 }else{
                     myRef.child(type).child(user.getUsername()).setValue(user);
+                    presenter.Vaildlogin(user.getUsername(), type);
                 }
                 myRef.child(type).removeEventListener(this);
             }

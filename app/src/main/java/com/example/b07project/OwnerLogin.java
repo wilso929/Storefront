@@ -3,12 +3,13 @@ package com.example.b07project;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 public class OwnerLogin extends AppCompatActivity implements Contract.View{
-
+    public static final String USERNAME = "com.example.myfirstapp.MESSAGE";
     private Contract.Presenter presenter;
 
     @Override
@@ -40,5 +41,11 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
         builder.setMessage(msg);
         builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
         builder.show();
+    }
+
+    public void NextPage(String username, String type){
+        Intent intent = new Intent(this, DisplayOwnerActivity.class);
+        intent.putExtra(USERNAME, username);
+        startActivity(intent);
     }
 }
