@@ -1,0 +1,64 @@
+November 24, 2021
+
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- setting up owner side 
+
+What are you planning on doing today?
+- finishing product screen
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- login pages
+
+What are you planning on doing today?
+- finishing that
+- merging branches
+- JUnit Testing
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- downloading git
+- familiarized with firebase
+
+What are you planning on doing today?
+- user story 6
+
+Any impediments or stumbling blocks?
+- git / android studio
+
+
+Name: Theresa Yu
+
+What have you done since yesterday?
+- user story 7
+- created home page for customers
+- make order or browse stores
+
+What are you planning on doing today?
+- familiarize with database
+
+Any impediments or stumbling blocks?
+- emulator doesnt work
+
+
+Name: Skandan Vecham (did not attend)
+
+What have you done since yesterday?
+
+
+What are you planning on doing today?
+
+Any impediments or stumbling blocks?
+
