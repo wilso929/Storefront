@@ -3,6 +3,7 @@ package com.example.b07project;
 public interface Contract {
     interface Model{
         void Check_Info(String username, String password, String type, Presenter presenter);
+        void Add_User(User user, String type, Presenter presenter);
     }
 
     interface View{
@@ -15,5 +16,8 @@ public interface Contract {
         void Check_Account(String type);
         void Vaildlogin(String username);
         void Invaildlogin();
+        void Create_Failed();
+        void Create_Customer();
+        void Create_Owner(String store_name);
     }
 }

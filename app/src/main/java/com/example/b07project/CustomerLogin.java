@@ -41,4 +41,5 @@ public class CustomerLogin extends AppCompatActivity implements Contract.View {
         builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
         builder.show();
     }
+
 }
