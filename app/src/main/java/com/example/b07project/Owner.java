@@ -2,7 +2,7 @@ package com.example.b07project;
 
 public class Owner extends User {
 
-    String store_name;
+    private String store_name;
 
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
