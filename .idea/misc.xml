@@ -10,6 +10,10 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/B07Project2/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/B07Project2/app/src/main/res/layout/activity_owner_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/B07Project2/app/src/main/res/layout/createaccount.xml" value="2.5142857142857142" />
+        <entry key="app/src/main/res/layout/activity_display_owner.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_display_owner_orders.xml" value="0.2876464120382617" />
+        <entry key="app/src/main/res/layout/activity_display_owner_products.xml" value="0.4159358948844117" />
+        <entry key="app/src/main/res/layout/activity_owner_login.xml" value="0.17529198440567154" />
       </map>
     </option>
   </component>

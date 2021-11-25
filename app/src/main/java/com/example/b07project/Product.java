@@ -42,6 +42,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Name: " + name + " | Brand: " + brand + " | Price: $" + price;
+        return "Item: " + name + " | Brand: " + brand + " | Price: $" + price;
     }
 }

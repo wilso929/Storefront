@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class OwnerLogin extends AppCompatActivity implements Contract.View{
     private Contract.Presenter presenter;
+    public static final String USERNAME = "com.example.myfirstapp.MESSAGE";
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
 
     public String getUsername(){
         EditText text = findViewById(R.id.Username);
+        username = text.getText().toString();
         return text.getText().toString();
     }
     public String getPassword(){
@@ -42,9 +45,18 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
         builder.show();
     }
 
+
     public void NextPage(User user, String type){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
         intent.putExtra("User", user);
         startActivity(intent);
     }
+
+    /*
+    public void NextPage(View view){
+        Intent intent = new Intent(this, DisplayOwnerActivity.class);
+        intent.putExtra(USERNAME, username);
+        startActivity(intent);
+    }
+    */
 }

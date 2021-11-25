@@ -5,4 +5,5 @@
 
     <string name="listorders_button">VIEW ORDERS</string>
     <string name="listproducts_button">VIEW PRODUCTS</string>
+    <string name="addproduct_button">ADD PRODUCT</string>
 </resources>

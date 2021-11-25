@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -18,14 +19,13 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        if(intent.getExtras() !=null){
+        if(intent.getExtras() !=null) {
             this.owner = (Owner) intent.getSerializableExtra("User");
         }
-        //for(Order o : owner.getOrders()){
-          //  for(Product p: o.getProducts()){
-            //    Alert("Pro", p.getName()+","+p.getBrand()+","+p.getPrice());
-            //}
-        //}
+
+        Product p = new Product("food", "nestle", 2.99);
+        owner.getProduct_list().add(p);
+
     }
 
     public void view_products(View view) {
@@ -34,7 +34,17 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void view_orders(View view){}
+    public void view_orders(View view){
+        Intent intent = new Intent(this, DisplayOwnerOrdersActivity.class);
+        intent.putExtra("Owner", this.owner);
+        startActivity(intent);
+    }
+
+    public void add_product(View view){
+        Intent intent = new Intent(this, AddOwnerProductActivity.class);
+        intent.putExtra("Owner", this.owner);
+        startActivity(intent);
+    }
 
     public void Alert(String title, String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplayOwnerActivity.this);
@@ -44,5 +54,7 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
         builder.show();
     }
+
+
 
 }

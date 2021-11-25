@@ -27,6 +27,7 @@ public class Owner extends User  implements Serializable {
     }
 
     public void setProduct_list(ArrayList<Product> product_list) {
+        this.product_list.clear();
         this.product_list = product_list;
     }
 
