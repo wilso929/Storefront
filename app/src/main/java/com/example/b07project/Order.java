@@ -2,22 +2,23 @@ package com.example.b07project;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Order implements Serializable {
-    String username;
+    String customer;
     ArrayList<Product> products;
+    String owner;
     boolean completed;
 
     public Order(){
 
     }
 
-    public Order(String username, ArrayList<Product> products, boolean completed) {
-        this.username = username;
+    public Order(String customer, String owner, ArrayList<Product> products, boolean completed) {
+        this.customer = customer;
         this.products.clear();
         this.products = products;
         this.completed = completed;
+        this.owner = owner;
     }
 
     public double calculate_price(){
@@ -28,14 +29,18 @@ public class Order implements Serializable {
         return sum;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCustomer() {
+        return customer;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public String getOwner() {
+        return owner;
     }
-
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
     public ArrayList<Product> getProducts() {
         return products;
     }

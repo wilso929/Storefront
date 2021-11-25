@@ -1,7 +1,5 @@
 package com.example.b07project;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
 public class Product implements Serializable {

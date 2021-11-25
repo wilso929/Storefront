@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Owner extends User  implements Serializable {
 
+
     String store_name;
     ArrayList<Product> product_list = new ArrayList<Product>();
     ArrayList<Order> orders = new ArrayList<Order>();
@@ -14,7 +15,6 @@ public class Owner extends User  implements Serializable {
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-
     public Owner(String username, String password, String store_name) {
         super(username, password);
         this.store_name = store_name;

@@ -89,46 +89,12 @@ public class MyModel implements Contract.Model{
                             }else if(snapshot.getKey().equals("product_list")){
                                 ArrayList<Product> product_list = new ArrayList<Product>();
                                 for(DataSnapshot ds : snapshot.getChildren()){
-                                    Product product = new Product();
-                                    for(DataSnapshot snap : ds.getChildren()){
-                                        if(snap.getKey().equals("name")){
-                                            product.setName(snap.getValue().toString());
-                                        }else if(snap.getKey().equals("brand")){
-                                            product.setBrand(snap.getValue().toString());
-                                        }else if(snap.getKey().equals("price")){
-                                            product.setPrice(Double.parseDouble(snap.getValue().toString()));
-                                        }
-                                    }
+                                    Product product = ds.getValue(Product.class);
                                     product_list.add(product);
                                 }
                                 owner.setProduct_list(product_list);
-
                             }else if(snapshot.getKey().equals("order_list")){
                                 ArrayList<Order> order_list = new ArrayList<Order>();
-                                for(DataSnapshot ds : snapshot.getChildren()){
-                                    Order order = new Order();
-                                    if(ds.getKey().equals("username")){
-                                        order.setUsername(snapshot.getValue().toString());
-                                    }else if(ds.getKey().equals("product_list")){
-                                        ArrayList<Product> product_list = new ArrayList<Product>();
-                                        for(DataSnapshot sp : ds.getChildren()){
-                                            Product product = new Product();
-                                            for(DataSnapshot snap : sp.getChildren()){
-                                                if(snap.getKey().equals("name")){
-                                                    product.setName(snap.getValue().toString());
-                                                }else if(snap.getKey().equals("brand")){
-                                                    product.setBrand(snap.getValue().toString());
-                                                }else if(snap.getKey().equals("price")){
-                                                    product.setPrice(Double.parseDouble(snap.getValue().toString()));
-                                                }
-                                            }
-                                            product_list.add(product);
-                                        }
-                                        order.setProducts(product_list);
-                                    }else if(ds.getKey().equals("completed")){
-                                        order.setCompleted(Boolean.parseBoolean(ds.getValue().toString()));
-                                    }
-                                }
                                 owner.setOrders(order_list);
                             }else if(snapshot.getKey().equals("store_name")){
                                 owner.setStore_name(snapshot.getValue().toString());
@@ -143,30 +109,6 @@ public class MyModel implements Contract.Model{
                                 customer.setPassword(snapshot.getValue().toString());
                             }else if(snapshot.getKey().equals("order_list")){
                                 ArrayList<Order> order_list = new ArrayList<Order>();
-                                for(DataSnapshot ds : snapshot.getChildren()){
-                                    Order order = new Order();
-                                    if(ds.getKey().equals("username")){
-                                        order.setUsername(snapshot.getValue().toString());
-                                    }else if(ds.getKey().equals("product_list")){
-                                        ArrayList<Product> product_list = new ArrayList<Product>();
-                                        for(DataSnapshot sp : ds.getChildren()){
-                                            Product product = new Product();
-                                            for(DataSnapshot snap : sp.getChildren()){
-                                                if(snap.getKey().equals("name")){
-                                                    product.setName(snap.getValue().toString());
-                                                }else if(snap.getKey().equals("brand")){
-                                                    product.setBrand(snap.getValue().toString());
-                                                }else if(snap.getKey().equals("price")){
-                                                    product.setPrice(Double.parseDouble(snap.getValue().toString()));
-                                                }
-                                            }
-                                            product_list.add(product);
-                                        }
-                                        order.setProducts(product_list);
-                                    }else if(ds.getKey().equals("completed")){
-                                        order.setCompleted(Boolean.parseBoolean(ds.getValue().toString()));
-                                    }
-                                }
                                 customer.setOrders(order_list);
                             }
                         }

@@ -1,16 +1,14 @@
 package com.example.b07project;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class OwnerLogin extends AppCompatActivity implements Contract.View{
-    public static final String USERNAME = "com.example.myfirstapp.MESSAGE";
     private Contract.Presenter presenter;
 
     @Override

@@ -2,7 +2,6 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CreateAccount extends AppCompatActivity implements Contract.View{
     private Contract.Presenter presenter;
-    public static final String USERNAME = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
