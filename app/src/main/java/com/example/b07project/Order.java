@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Order implements Serializable {
     String customer;
-    ArrayList<Product> products;
+    ArrayList<Product> products = new ArrayList<Product>();
     String owner;
     boolean completed;
 
@@ -15,7 +15,6 @@ public class Order implements Serializable {
 
     public Order(String customer, String owner, ArrayList<Product> products, boolean completed) {
         this.customer = customer;
-        this.products.clear();
         this.products = products;
         this.completed = completed;
         this.owner = owner;

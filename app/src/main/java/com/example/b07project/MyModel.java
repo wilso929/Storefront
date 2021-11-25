@@ -85,7 +85,6 @@ public class MyModel implements Contract.Model{
                         for(DataSnapshot snapshot : task.getResult().getChildren()){
                             if(snapshot.getKey().equals("password")){
                                 owner.setPassword(snapshot.getValue().toString());
-
                             }else if(snapshot.getKey().equals("product_list")){
                                 ArrayList<Product> product_list = new ArrayList<Product>();
                                 for(DataSnapshot ds : snapshot.getChildren()){
@@ -95,6 +94,26 @@ public class MyModel implements Contract.Model{
                                 owner.setProduct_list(product_list);
                             }else if(snapshot.getKey().equals("order_list")){
                                 ArrayList<Order> order_list = new ArrayList<Order>();
+                                for(DataSnapshot ds : snapshot.getChildren()){
+                                    Order order = new Order();
+                                    for(DataSnapshot snap : ds.getChildren()){
+                                        if(snap.getKey().equals("customer")){
+                                            order.setCustomer(snap.getValue().toString());
+                                        }else if(snap.getKey().equals("owner")){
+                                            order.setOwner(snap.getValue().toString());
+                                        }else if(snap.getKey().equals("completed")){
+                                            order.setCompleted(Boolean.parseBoolean(snap.getValue().toString()));
+                                        }else if(snap.getKey().equals("product_list")){
+                                            ArrayList<Product> product_list = new ArrayList<Product>();
+                                            for(DataSnapshot p : snap.getChildren()){
+                                                Product product = p.getValue(Product.class);
+                                                product_list.add(product);
+                                            }
+                                            order.setProducts(product_list);
+                                        }
+                                    }
+                                    order_list.add(order);
+                                }
                                 owner.setOrders(order_list);
                             }else if(snapshot.getKey().equals("store_name")){
                                 owner.setStore_name(snapshot.getValue().toString());
@@ -109,6 +128,26 @@ public class MyModel implements Contract.Model{
                                 customer.setPassword(snapshot.getValue().toString());
                             }else if(snapshot.getKey().equals("order_list")){
                                 ArrayList<Order> order_list = new ArrayList<Order>();
+                                for(DataSnapshot ds : snapshot.getChildren()){
+                                    Order order = new Order();
+                                    for(DataSnapshot snap : ds.getChildren()){
+                                        if(snap.getKey().equals("customer")){
+                                            order.setCustomer(snap.getValue().toString());
+                                        }else if(snap.getKey().equals("owner")){
+                                            order.setOwner(snap.getValue().toString());
+                                        }else if(snap.getKey().equals("completed")){
+                                            order.setCompleted(Boolean.parseBoolean(snap.getValue().toString()));
+                                        }else if(snap.getKey().equals("product_list")){
+                                            ArrayList<Product> product_list = new ArrayList<Product>();
+                                            for(DataSnapshot p : snap.getChildren()){
+                                                Product product = p.getValue(Product.class);
+                                                product_list.add(product);
+                                            }
+                                            order.setProducts(product_list);
+                                        }
+                                    }
+                                    order_list.add(order);
+                                }
                                 customer.setOrders(order_list);
                             }
                         }

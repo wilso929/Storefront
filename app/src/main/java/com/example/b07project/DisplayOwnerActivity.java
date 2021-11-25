@@ -21,11 +21,11 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         if(intent.getExtras() !=null){
             this.owner = (Owner) intent.getSerializableExtra("User");
         }
-        //for(Order o : owner.getOrders()){
-          //  for(Product p: o.getProducts()){
-            //    Alert("Pro", p.getName()+","+p.getBrand()+","+p.getPrice());
-            //}
-        //}
+        for(Order o : owner.getOrders()){
+          for(Product p: o.getProducts()){
+            Alert("Pro", p.getName()+","+p.getBrand()+","+p.getPrice());
+          }
+        }
     }
 
     public void view_products(View view) {
