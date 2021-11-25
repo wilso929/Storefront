@@ -11,9 +11,11 @@
         android:theme="@style/Theme.B07Project">
         <activity
             android:name=".DisplayOwnerProductsActivity"
+            android:parentActivityName=".DisplayOwnerActivity"
             android:exported="false" />
         <activity
             android:name=".DisplayOwnerActivity"
+            android:parentActivityName=".OwnerLogin"
             android:exported="false" />
         <activity
             android:name=".CreateAccount"
