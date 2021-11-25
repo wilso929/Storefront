@@ -1,12 +1,17 @@
 package com.example.b07project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Order {
+public class Order implements Serializable {
     String username;
     ArrayList<Product> products;
     boolean completed;
+
+    public Order(){
+
+    }
 
     public Order(String username, ArrayList<Product> products, boolean completed) {
         this.username = username;

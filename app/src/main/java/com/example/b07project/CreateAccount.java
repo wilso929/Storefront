@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 
@@ -29,13 +30,13 @@ public class CreateAccount extends AppCompatActivity implements Contract.View{
         return text.getText().toString();
     }
 
-    public void NextPage(String username, String type){
+    public void NextPage(User user, String type){
         if(type.equals("Owners")){
             Intent intent = new Intent(this, DisplayOwnerActivity.class);
-            intent.putExtra(USERNAME, username);
+            intent.putExtra("User", user);
             startActivity(intent);
         }else{
-            Alert("Yay", "You did it");
+            Alert("Yay", user.getPassword());
         }
     }
 

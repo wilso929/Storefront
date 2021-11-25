@@ -44,7 +44,7 @@ public class CustomerLogin extends AppCompatActivity implements Contract.View {
         builder.show();
     }
 
-    public void NextPage(String username, String type){
+    public void NextPage(User user, String type){
         Alert("Yay", "You did it");
     }
 

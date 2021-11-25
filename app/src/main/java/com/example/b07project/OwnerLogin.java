@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 
@@ -43,9 +44,9 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
         builder.show();
     }
 
-    public void NextPage(String username, String type){
+    public void NextPage(User user, String type){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(USERNAME, username);
+        intent.putExtra("User", user);
         startActivity(intent);
     }
 }

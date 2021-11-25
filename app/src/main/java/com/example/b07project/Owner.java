@@ -1,17 +1,15 @@
 package com.example.b07project;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 //import java.util.HashSet;
 //import java.util.LinkedHashSet;
 
-public class Owner extends User  implements Parcelable {
+public class Owner extends User  implements Serializable {
 
     String store_name;
-    ArrayList<Product> product_list;
-    ArrayList<Order> orders;
+    ArrayList<Product> product_list = new ArrayList<Product>();
+    ArrayList<Order> orders = new ArrayList<Order>();
 
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -21,11 +19,7 @@ public class Owner extends User  implements Parcelable {
         super(username, password);
         this.store_name = store_name;
         this.product_list.clear();
-        this.product_list = product_list;
         this.orders.clear();
-        this.orders = orders;
-
-
     }
 
     public ArrayList<Product> getProduct_list() {
@@ -44,21 +38,6 @@ public class Owner extends User  implements Parcelable {
         this.orders = orders;
     }
 
-    protected Owner(Parcel in) {
-        store_name = in.readString();
-    }
-
-    public static final Creator<Owner> CREATOR = new Creator<Owner>() {
-        @Override
-        public Owner createFromParcel(Parcel in) {
-            return new Owner(in);
-        }
-
-        @Override
-        public Owner[] newArray(int size) {
-            return new Owner[size];
-        }
-    };
 
     public String getStore_name(){
         return store_name;
@@ -86,13 +65,5 @@ public class Owner extends User  implements Parcelable {
         }
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(store_name);
-    }
 }

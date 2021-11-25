@@ -2,7 +2,9 @@ package com.example.b07project;
 
 import androidx.annotation.NonNull;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     String name;
     String brand;
     double price;

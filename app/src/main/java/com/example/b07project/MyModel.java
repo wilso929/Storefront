@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MyModel implements Contract.Model{
 
     public MyModel(){
@@ -26,10 +28,14 @@ public class MyModel implements Contract.Model{
                     Log.e("demo", "Error getting data", task.getException());
                 }else {
                     if(task.getResult().exists()){
-                        Owner owner = task.getResult().getValue(Owner.class);
-                        if(password.equals(owner.getPassword())) {
-                            presenter.Vaildlogin(username, type);
-
+                        String check = "";
+                        for(DataSnapshot snapshot : task.getResult().getChildren()) {
+                            if (snapshot.getKey().equals("password")) {
+                                check = snapshot.getValue().toString();
+                            }
+                        }
+                        if(password.equals(check)){
+                            GenerateUser(username, type, presenter);
                         }else{
                             presenter.Invaildlogin();
                         }
@@ -52,13 +58,93 @@ public class MyModel implements Contract.Model{
                     presenter.Create_Failed();
                 }else{
                     myRef.child(type).child(user.getUsername()).setValue(user);
-                    presenter.Vaildlogin(user.getUsername(), type);
+                    GenerateUser(user.getUsername(), type, presenter);
                 }
                 myRef.child(type).removeEventListener(this);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("Tag","Error while reading data");
+            }
+        });
+    }
+
+
+    public static void GenerateUser(String username, String type, Contract.Presenter presenter){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(type);
+        ref.child(username).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("demo", "Error getting data", task.getException());
+                }
+                else {
+                    if(type.equals("Owners")){
+                        Owner owner = new Owner();
+                        owner.setUsername(username);
+                        for(DataSnapshot snapshot : task.getResult().getChildren()){
+                            if(snapshot.getKey().equals("password")){
+                                owner.setPassword(snapshot.getValue().toString());
+
+                            }else if(snapshot.getKey().equals("product_lsit")){
+                                ArrayList<Product> product_list = new ArrayList<Product>();
+                                for(DataSnapshot ds : snapshot.getChildren()){
+                                    product_list.add(ds.getValue(Product.class));
+                                }
+                                owner.setProduct_list(product_list);
+
+                            }else if(snapshot.getKey().equals("order_lsit")){
+                                ArrayList<Order> order_list = new ArrayList<Order>();
+                                for(DataSnapshot ds : snapshot.getChildren()){
+                                    Order order = new Order();
+                                    if(ds.getKey().equals("username")){
+                                        order.setUsername(snapshot.getValue().toString());
+
+                                    }else if(ds.getKey().equals("product_lsit")){
+                                        ArrayList<Product> product_list = new ArrayList<Product>();
+                                        for(DataSnapshot snap : snapshot.getChildren()){
+                                            product_list.add(snap.getValue(Product.class));
+                                        }
+                                        order.setProducts(product_list);
+                                    }else if(ds.getKey().equals("completed")){
+                                        order.setCompleted(Boolean.parseBoolean(ds.getValue().toString()));
+                                    }
+                                }
+                                owner.setOrders(order_list);
+                            }else if(snapshot.getKey().equals("store_name")){
+                                owner.setStore_name(snapshot.getValue().toString());
+                            }
+                        }
+                        presenter.Vaildlogin(owner, type);
+                    }else{
+                        Customer customer = new Customer();
+                        customer.setUsername(username);
+                        for(DataSnapshot snapshot : task.getResult().getChildren()){
+                            if(snapshot.getKey().equals("password")){
+                                customer.setPassword(snapshot.getValue().toString());
+                            }else if(snapshot.getKey().equals("order_lsit")){
+                                ArrayList<Order> order_list = new ArrayList<Order>();
+                                for(DataSnapshot ds : snapshot.getChildren()){
+                                    Order order = new Order();
+                                    if(ds.getKey().equals("username")){
+                                        order.setUsername(snapshot.getValue().toString());
+                                    }else if(ds.getKey().equals("product_lsit")){
+                                        ArrayList<Product> product_list = new ArrayList<Product>();
+                                        for(DataSnapshot snap : snapshot.getChildren()){
+                                            product_list.add(snap.getValue(Product.class));
+                                        }
+                                        order.setProducts(product_list);
+                                    }else if(ds.getKey().equals("completed")){
+                                        order.setCompleted(Boolean.parseBoolean(ds.getValue().toString()));
+                                    }
+                                    order_list.add(order);
+                                }
+                                customer.setOrders(order_list);
+                            }
+                        }
+                        presenter.Vaildlogin(customer, type);
+                    }
+                }
             }
         });
     }

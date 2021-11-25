@@ -10,12 +10,12 @@ public interface Contract {
         String getUsername();
         String getPassword();
         void Alert(String title, String msg);
-        void NextPage(String username, String type);
+        void NextPage(User user, String type);
     }
 
     interface Presenter{
         void Check_Account(String type);
-        void Vaildlogin(String username, String type);
+        void Vaildlogin(User user, String type);
         void Invaildlogin();
         void Create_Failed();
         void Create_Customer();

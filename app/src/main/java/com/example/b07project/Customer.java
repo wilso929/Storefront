@@ -1,10 +1,11 @@
 package com.example.b07project;
 
-import java.util.HashSet;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Customer extends User{
+public class Customer extends User implements Serializable {
 
-    HashSet<Order> orders = new HashSet<Order>();
+    ArrayList<Order> orders = new ArrayList<Order>();
 
     public Customer() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -17,5 +18,13 @@ public class Customer extends User{
 
     public void add_order(Order o){
         orders.add(o);
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
     }
 }

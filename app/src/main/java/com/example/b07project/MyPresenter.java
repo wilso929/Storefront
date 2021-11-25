@@ -41,8 +41,8 @@ public class MyPresenter implements Contract.Presenter{
 
     }
 
-    public void Vaildlogin(String username, String type){
-        view.NextPage(username, type);
+    public void Vaildlogin(User user, String type){
+        view.NextPage(user, type);
     }
 
     public void Invaildlogin(){
