@@ -22,14 +22,6 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         if(intent.getExtras() !=null){
             this.owner = (Owner) intent.getSerializableExtra("User");
         }
-        Product pro = new Product("Tide", "Tide", 0.99);
-        owner.add_product(pro);
-        for(Product p : owner.getProduct_list()){
-            Log.i("pro", p.getName());
-        }
-        Alert("Pass", owner.getPassword());
-
-
     }
 
     public void view_products(View view) {
@@ -39,16 +31,5 @@ public class DisplayOwnerActivity extends AppCompatActivity {
     }
 
     public void view_orders(View view){}
-
-    public void Alert(String title, String msg){
-        AlertDialog.Builder builder = new AlertDialog.Builder(DisplayOwnerActivity.this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
-        builder.show();
-    }
-
-
 
 }

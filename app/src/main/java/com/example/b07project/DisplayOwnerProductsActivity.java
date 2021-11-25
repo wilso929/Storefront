@@ -23,7 +23,6 @@ public class DisplayOwnerProductsActivity extends AppCompatActivity {
         if(intent.getExtras() !=null){
             owner = (Owner) intent.getSerializableExtra("Owner");
         }
-        Alert("Pass", owner.getPassword());
 
         listview = findViewById(R.id.listview_products);
 
@@ -31,12 +30,4 @@ public class DisplayOwnerProductsActivity extends AppCompatActivity {
         listview.setAdapter(adapter);
     }
 
-    public void Alert(String title, String msg){
-        AlertDialog.Builder builder = new AlertDialog.Builder(DisplayOwnerProductsActivity.this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
-        builder.show();
-    }
 }
