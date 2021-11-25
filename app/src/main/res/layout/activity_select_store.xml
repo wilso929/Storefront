@@ -9,35 +9,87 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="413dp"
-        android:layout_height="78dp"
+        android:layout_height="80dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:title="Select a Store"
-        tools:layout_editor_absoluteY="-11dp"
         tools:visibility="visible" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="409dp"
-        android:layout_height="671dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="59dp">
+        android:layout_height="570dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/RadioGroup1"
+                android:layout_width="403dp"
+                android:layout_height="600dp"
+
+                >
+
+            </RadioGroup>
+
+        </LinearLayout>
     </ScrollView>
 
-    <RadioGroup
-        android:id="@+id/RadioGroup1"
-        android:layout_width="403dp"
-        android:layout_height="676dp"
-        tools:layout_editor_absoluteX="4dp"
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onStoreSelected"
+        android:text="OK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#000000"
+        app:strokeWidth="2dp" />
 
-        tools:layout_editor_absoluteY="65dp" />
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
+        android:onClick="onStoreSelected"
+        android:text="CANCEL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#000000"
+        app:strokeWidth="2dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar5"
+        android:layout_width="413dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
