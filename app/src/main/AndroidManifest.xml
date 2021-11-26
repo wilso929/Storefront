@@ -10,6 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".DisplayOwnerProductsActivity"
+            android:parentActivityName=".DisplayOwnerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayOwnerActivity"
+            android:parentActivityName=".OwnerLogin"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccount"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CustomerLogin"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".OwnerLogin"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">B07Project</string>
+    <string name="username">Enter Username</string>
+    <string name="password">Enter Password</string>
+
+    <string name="listorders_button">VIEW ORDERS</string>
+    <string name="listproducts_button">VIEW PRODUCTS</string>
 </resources>
