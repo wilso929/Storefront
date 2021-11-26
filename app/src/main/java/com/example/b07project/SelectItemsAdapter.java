@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 // This class is responsible for populating the store's inventory to the owner
 public class SelectItemsAdapter extends
         RecyclerView.Adapter<SelectItemsAdapter.ViewHolder> {
-    private Owner storeOwner;
-    private static int[] quantities;
+    private final Owner storeOwner;
+    private int[] quantities;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final EditText editText;
         private final int position;
@@ -39,7 +39,8 @@ public class SelectItemsAdapter extends
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     this.previousText = this.currentText;
-                    this.currentText = charSequence.toString();
+                    this.currentText = charSequence.toString().replace(
+                            "-", ""); // remove possibility of negative quantities
 
                     if (!(this.previousText.equals(this.currentText))) {
                         // attempt to update the quantities array
@@ -77,13 +78,13 @@ public class SelectItemsAdapter extends
 
         if (this.storeOwner != null &&
                 this.storeOwner.product_list != null) {
-            this.quantities = new int[this.storeOwner.product_list.size()];
+            quantities = new int[this.storeOwner.product_list.size()];
         }
     }
 
+    // inflating a layout from XML and returning the holder
     @Override
-    public SelectItemsAdapter.ViewHolder onCreateViewHolder(
-            ViewGroup viewGroup, int viewType) {
+    public SelectItemsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.layout_items_products, viewGroup, false);
         return new SelectItemsAdapter.ViewHolder(view);
@@ -91,7 +92,7 @@ public class SelectItemsAdapter extends
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(SelectItemsAdapter.ViewHolder viewHolder, 
+    public void onBindViewHolder(SelectItemsAdapter.ViewHolder viewHolder,
                                  final int position) {
         if (this.storeOwner != null &&
                 this.storeOwner.product_list != null &&
@@ -106,8 +107,8 @@ public class SelectItemsAdapter extends
             notifyItemChanged(position);
         }
 
-        if (this.quantities != null) {
-            viewHolder.setTextEditorValue(this.quantities[position]);
+        if (quantities != null) {
+            viewHolder.setTextEditorValue(quantities[position]);
         }
     }
 
