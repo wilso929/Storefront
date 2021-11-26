@@ -1,0 +1,76 @@
+November 25, 2021
+
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- worked on listing products/orders
+
+What are you planning on doing today?
+- finishing product screen
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- fixed firebase database pulling
+
+What are you planning on doing today?
+- refining firebase database
+- JUnit testing
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- got project going on android studio
+- read thru code
+
+What are you planning on doing today?
+- user story 6
+
+Any impediments or stumbling blocks?
+- git / android studio
+
+
+Name: Theresa Yu
+
+What have you done since yesterday?
+- debugging 
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Skandan Vecham 
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- user story 8
+
+Any impediments or stumbling blocks?
+n/a
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- no update, just joined group
+
+What are you planning on doing today?
+- customer side
+
+Any impediments or stumbling blocks?
+n/a
+
+
+

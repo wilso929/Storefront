@@ -1,0 +1,71 @@
+November 26, 2021
+
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- finished product screen, order screen and adding products
+
+What are you planning on doing today?
+- marking orders as completed
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- started testing login functions
+
+What are you planning on doing today?
+- continue testing
+
+Any impediments or stumbling blocks?
+- Mockito
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- started a display
+
+What are you planning on doing today?
+- going to help on user stories 6 and 8
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Theresa Yu
+
+What have you done since yesterday?
+- debugging 
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Skandan Vecham 
+
+What have you done since yesterday?
+- no update, had computer issues
+
+What are you planning on doing today?
+- user story 8
+
+Any impediments or stumbling blocks?
+- computer issues
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- no update, was waiting on customer interface
+
+What are you planning on doing today?
+- user story 6
+
+Any impediments or stumbling blocks?
+n/a
