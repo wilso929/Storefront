@@ -8,7 +8,7 @@ import java.util.jar.Attributes;
 
 public class Order implements Serializable {
     String customer;
-    ArrayList<Product> products;
+    ArrayList<Product> products = new ArrayList<Product>();
     String owner;
     boolean completed;
 
