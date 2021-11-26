@@ -12,7 +12,6 @@ public class Customer extends User implements Serializable {
     }
 
     public Customer(String username, String password) {
-
         super(username, password);
     }
 
