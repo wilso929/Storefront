@@ -1,8 +1,10 @@
 package com.example.b07project;
 
-public abstract class User {
-    String username;
-    String password;
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
+    private String username;
+    private String password;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

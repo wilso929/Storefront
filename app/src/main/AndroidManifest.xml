@@ -10,17 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
-            android:parentActivityName=".MainActivity"
+            android:name=".AddOwnerProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayOwnerOrdersActivity"
+            android:exported="false"
+            android:parentActivityName=".DisplayOwnerActivity"/>
+        <activity
+            android:name=".DisplayOwnerProductsActivity"
+            android:exported="false"
+            android:parentActivityName=".DisplayOwnerActivity" />
+        <activity
+            android:name=".DisplayOwnerActivity"
+            android:exported="false"
+            android:parentActivityName=".OwnerLogin" />
+        <activity
             android:name=".CreateAccount"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:parentActivityName=".MainActivity"
             android:name=".CustomerLogin"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:parentActivityName=".MainActivity"
             android:name=".OwnerLogin"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
