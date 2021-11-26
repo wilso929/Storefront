@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DisplayOwnerActivity extends AppCompatActivity {
 
     Owner owner;
+    public static String Owner_Key = "b07Project";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,29 +21,26 @@ public class DisplayOwnerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent.getExtras() !=null) {
-            this.owner = (Owner) intent.getSerializableExtra("User");
+            this.owner = (Owner) intent.getSerializableExtra(Owner_Key);
         }
-
-        Product p = new Product("food", "nestle", 2.99);
-        owner.getProduct_list().add(p);
 
     }
 
     public void view_products(View view) {
         Intent intent = new Intent(this, DisplayOwnerProductsActivity.class);
-        intent.putExtra("Owner", this.owner);
+        intent.putExtra(Owner_Key, this.owner);
         startActivity(intent);
     }
 
     public void view_orders(View view){
         Intent intent = new Intent(this, DisplayOwnerOrdersActivity.class);
-        intent.putExtra("Owner", this.owner);
+        intent.putExtra(Owner_Key, this.owner);
         startActivity(intent);
     }
 
     public void add_product(View view){
         Intent intent = new Intent(this, AddOwnerProductActivity.class);
-        intent.putExtra("Owner", this.owner);
+        intent.putExtra(Owner_Key, this.owner);
         startActivity(intent);
     }
 

@@ -23,7 +23,7 @@ public class DisplayOwnerOrdersActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent.getExtras() !=null){
-            owner = (Owner) intent.getSerializableExtra("Owner");
+            owner = (Owner) intent.getSerializableExtra(DisplayOwnerActivity.Owner_Key);
         }
 
         if (owner != null){

@@ -31,6 +31,15 @@ public class Owner extends User  implements Serializable {
         this.product_list = product_list;
     }
 
+    public boolean productExists(Product p){
+        for (Product a: product_list){
+            if (a.equals(p)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Order> getOrders() {
         return orders;
     }

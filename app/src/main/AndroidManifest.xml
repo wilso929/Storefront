@@ -11,8 +11,7 @@
         android:theme="@style/Theme.B07Project">
         <activity
             android:name=".AddOwnerProductActivity"
-            android:exported="false"
-            android:parentActivityName=".DisplayOwnerActivity"/>
+            android:exported="false" />
         <activity
             android:name=".DisplayOwnerOrdersActivity"
             android:exported="false"

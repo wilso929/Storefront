@@ -48,7 +48,7 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
 
     public void NextPage(User user, String type){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra("User", user);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, user);
         startActivity(intent);
     }
 

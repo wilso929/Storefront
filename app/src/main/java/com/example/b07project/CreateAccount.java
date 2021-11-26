@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.EditText;
 
@@ -31,7 +32,7 @@ public class CreateAccount extends AppCompatActivity implements Contract.View{
     public void NextPage(User user, String type){
         if(type.equals("Owners")){
             Intent intent = new Intent(this, DisplayOwnerActivity.class);
-            intent.putExtra("User", user);
+            intent.putExtra(DisplayOwnerActivity.Owner_Key, user);
             startActivity(intent);
         }else{
             Alert("Yay", user.getPassword());
