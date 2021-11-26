@@ -18,6 +18,11 @@ public class CustomerHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle intentExtras = this.getIntent().getExtras();
+        this.allOwners = (intentExtras == null) ? null :
+                (HashSet<Owner>) intentExtras.getSerializable("All Owners");
+        this.customer = (intentExtras == null) ? null :
+                (Customer) intentExtras.getParcelable("Customer");
         setContentView(R.layout.activity_customer_home);
     }
 

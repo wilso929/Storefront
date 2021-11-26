@@ -1,14 +1,14 @@
 package com.example.b07project;
 
-import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Order {
     String username;
-    HashSet<Product> products;
+    LinkedList<Product> products;
     double price;
     boolean completed;
 
-    public Order(String username, HashSet<Product> products, double price, boolean completed) {
+    public Order(String username, LinkedList<Product> products, double price, boolean completed) {
         this.username = username;
         this.products = products;
         this.price = price;
@@ -23,11 +23,11 @@ public class Order {
         this.username = username;
     }
 
-    public HashSet<Product> getProducts() {
+    public LinkedList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(HashSet<Product> products) {
+    public void setProducts(LinkedList<Product> products) {
         this.products = products;
     }
 

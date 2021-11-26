@@ -1,6 +1,7 @@
 package com.example.b07project;
 
-import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,34 +14,71 @@ import androidx.recyclerview.widget.RecyclerView;
 public class SelectItemsAdapter extends
         RecyclerView.Adapter<SelectItemsAdapter.ViewHolder> {
     private Owner storeOwner;
+    private static int[] quantities;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final EditText editText;
+        private final int position;
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
+            this.position = getLayoutPosition();
             textView = (TextView) view.findViewById(R.id.productDesc);
             editText = (EditText) view.findViewById(R.id.editQuantity);
-            editText.setText("0");
+            editText.addTextChangedListener(new TextWatcher() {
+                private boolean textChanged;
+                String previousText, currentText;
+
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    this.currentText = charSequence.toString();
+                    this.textChanged = false;
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    this.previousText = this.currentText;
+                    this.currentText = charSequence.toString();
+
+                    if (!(this.previousText.equals(this.currentText))) {
+                        // attempt to update the quantities array
+                        try {
+                            quantities[position] = Integer.parseInt(this.currentText);
+                            textChanged = true;
+                        } catch (NumberFormatException exception) {
+                            this.currentText = this.previousText;
+                            quantities[position] = 0;
+                        }
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (textChanged) {
+                        textChanged = false;
+                        editText.setText(currentText); // change the text
+                    }
+                }
+            });
         }
 
         public void setTextViewText(String newText) {
             textView.setText(newText);
         }
 
-        public int getTextEditorValue() {
-            try {
-                return Integer.parseInt(this.editText.getText().toString());
-            } catch (NumberFormatException exception) {
-                return 0;
-            }
+        public void setTextEditorValue(int quantity) {
+            this.editText.setText(String.valueOf(quantity));
         }
     }
 
     public SelectItemsAdapter(Owner storeOwner) {
         this.storeOwner = storeOwner;
+
+        if (this.storeOwner != null &&
+                this.storeOwner.product_list != null) {
+            this.quantities = new int[this.storeOwner.product_list.size()];
+        }
     }
 
     @Override
@@ -55,10 +93,9 @@ public class SelectItemsAdapter extends
     @Override
     public void onBindViewHolder(SelectItemsAdapter.ViewHolder viewHolder, 
                                  final int position) {
-        // Get element from your database at the position and replace the
-        // contents of the view with that element
         if (this.storeOwner != null &&
-                this.storeOwner.product_list != null) {
+                this.storeOwner.product_list != null &&
+                position < this.storeOwner.product_list.size()) {
             Object[] products = this.storeOwner.product_list.toArray();
             Product selectedProduct = (Product) products[position];
             String text = "Name: " + selectedProduct.getName() +
@@ -66,6 +103,11 @@ public class SelectItemsAdapter extends
                     "\nPrice:" + selectedProduct.getPrice() +
                     "\\each";
             viewHolder.setTextViewText(text);
+            notifyItemChanged(position);
+        }
+
+        if (this.quantities != null) {
+            viewHolder.setTextEditorValue(this.quantities[position]);
         }
     }
 
@@ -74,5 +116,13 @@ public class SelectItemsAdapter extends
     public int getItemCount() {
         return (this.storeOwner == null || this.storeOwner.product_list == null) ? -1 :
                 this.storeOwner.product_list.size();
+    }
+
+    public int getQuantityAtPosition(final int position) {
+        if (this.quantities != null && position < quantities.length
+                && position >= 0) {
+            return this.quantities[position];
+        }
+        return 0;
     }
 }

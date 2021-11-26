@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * Allows customer to select items from a store to make an order
@@ -16,13 +17,15 @@ import java.util.HashSet;
 public class SelectItems extends AppCompatActivity {
     private Owner selectedOwner;
     private Customer customer;
+    private SelectItemsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_items);
         // Lookup the recyclerview in activity layout
-        RecyclerView rv = (RecyclerView) findViewById(R.id.storeInventoryRV);
+        RecyclerView recyclerView =
+                (RecyclerView) findViewById(R.id.storeInventoryRV);
 
         // Initialize selectedOwner and customer
         Bundle intentExtras = getIntent().getExtras();
@@ -32,10 +35,9 @@ public class SelectItems extends AppCompatActivity {
                 (Customer) intentExtras.getParcelable("Customer");
 
         // Create adapter and set it as the adapter for the recyclerview
-        SelectItemsAdapter adapter = new
-                SelectItemsAdapter(this.selectedOwner);
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        this.adapter = new SelectItemsAdapter(this.selectedOwner);
+        recyclerView.setAdapter(this.adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -47,7 +49,32 @@ public class SelectItems extends AppCompatActivity {
      * @param view
      */
     public void makeOrder(View view) {
+        int currentQuantity = 0;
+        int i = 0; // index variable
+        double totalPrice = 0.0;
+        LinkedList<Product> orderItems = new LinkedList<Product>();
 
+        if (this.selectedOwner != null &&
+                this.selectedOwner.product_list != null &&
+                this.adapter != null) {
+            for (Product product : this.selectedOwner.product_list) {
+                currentQuantity = this.adapter.getQuantityAtPosition(i);
+
+                // add the product into orderItems currentQuantity number of times
+                for (int j = 0; j < currentQuantity; j++) {
+                    orderItems.add(new Product(product.getName(), product.getBrand(),
+                            product.getPrice()));
+                    totalPrice += product.getPrice(); // add the price each time
+                }
+
+                i++;
+            }
+
+            Order order = new Order(customer.getUsername(), orderItems, totalPrice,
+                    false); // create the Order object
+            customer.add_order(order); // update the customer's orders
+            selectedOwner.orders.add(order); // update the store owner's orders
+        }
         goBack(view); // return customer back to the main menu
     }
 
