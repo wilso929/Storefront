@@ -40,9 +40,11 @@ Name: Theresa Yu
 
 What have you done since yesterday?
 - debugging 
+- finished creating order method
 
 What are you planning on doing today?
 - continue debugging
+- reading firebase into a hashset
 
 Any impediments or stumbling blocks?
 n/a
