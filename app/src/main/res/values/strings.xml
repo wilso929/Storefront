@@ -6,6 +6,7 @@
     <string name="listorders_button">VIEW ORDERS</string>
     <string name="listproducts_button">VIEW PRODUCTS</string>
     <string name="addproduct_button">ADD PRODUCT</string>
+    <string name="deleteproduct_button">DELETE PRODUCT</string>
 
     <string name="productname">Enter Name of Product</string>
     <string name="brandname">Enter Brand of Product</string>
