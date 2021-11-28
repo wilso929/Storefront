@@ -68,35 +68,6 @@ public class DeleteOwnerProductActivity extends AppCompatActivity {
     }
 
 
-    /*
-    public void onButtonClick(View view){
-        //when you choose an item from the spinner
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Product p = (Product) parent.getSelectedItem();
-                //delete the product
-                Alert("It worked", p.toString());
-                //owner.product_list.remove(p);
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference();
-
-                //myRef.child("Owners").child(owner.getUsername()).child("product_list").child(p.name).removeValue();
-
-                //send back to home page for owner
-                Intent newintent = new Intent(this, DisplayOwnerActivity.class);
-                newintent.putExtra(DisplayOwnerActivity.Owner_Key, owner);
-                startActivity(newintent);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
-     */
-
     public void Alert(String title, String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(DeleteOwnerProductActivity.this);
         builder.setCancelable(true);

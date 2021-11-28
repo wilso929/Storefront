@@ -7,6 +7,8 @@
     <string name="listproducts_button">VIEW PRODUCTS</string>
     <string name="addproduct_button">ADD PRODUCT</string>
     <string name="deleteproduct_button">DELETE PRODUCT</string>
+    <string name="completeorder_button">COMPLETE ORDER</string>
+    <string name="sendhome_button">BACK TO LOGIN</string>
 
     <string name="productname">Enter Name of Product</string>
     <string name="brandname">Enter Brand of Product</string>

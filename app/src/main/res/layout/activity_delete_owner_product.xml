@@ -12,10 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="122dp"
         android:layout_marginEnd="123dp"
-        android:layout_marginBottom="305dp"
+        android:layout_marginBottom="376dp"
         android:text="@string/deleteproduct_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
@@ -24,5 +25,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/deleteproductbutton"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.846"
         tools:layout_editor_absoluteX="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
