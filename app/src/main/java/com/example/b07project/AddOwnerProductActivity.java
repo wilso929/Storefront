@@ -75,6 +75,12 @@ public class AddOwnerProductActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void backButton(View view){
+        Intent intent = new Intent(this, DisplayOwnerActivity.class);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, this.owner);
+        startActivity(intent);
+    }
+
 
     public String getProdName(){
         EditText text = findViewById(R.id.ProductName);

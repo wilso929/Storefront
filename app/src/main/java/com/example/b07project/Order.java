@@ -60,7 +60,7 @@ public class Order implements Serializable {
     @NonNull
     @Override
     public String toString(){
-        String end = "Name: " + customer + "\n";
+        String end = "Customer Name: " + customer + "\n";
         if (completed)
             end += "Completed\n";
         else

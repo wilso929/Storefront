@@ -15,5 +15,7 @@
     <string name="productprice">Price of Product</string>
     <string name="CreateProduct">Create New Product</string>
 
+    <string name="BackButton">BACK</string>
+
 
 </resources>

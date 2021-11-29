@@ -104,5 +104,10 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void backButton(View view){
+        Intent intent = new Intent(this, DisplayOwnerActivity.class);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, this.owner);
+        startActivity(intent);
+    }
 
 }

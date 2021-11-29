@@ -93,6 +93,12 @@ public class DeleteOwnerProductActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void backButton(View view){
+        Intent intent = new Intent(this, DisplayOwnerActivity.class);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, this.owner);
+        startActivity(intent);
+    }
+
 
     public void Alert(String title, String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(DeleteOwnerProductActivity.this);
