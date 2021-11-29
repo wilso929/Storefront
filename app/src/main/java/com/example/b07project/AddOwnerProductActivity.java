@@ -51,14 +51,28 @@ public class AddOwnerProductActivity extends AppCompatActivity {
                 myRef.child("Owners").child(owner.getUsername()).child("product_list").child(name).setValue(new_prod);
 
 
-                Intent intent = new Intent(this, DisplayOwnerActivity.class);
-                intent.putExtra(DisplayOwnerActivity.Owner_Key, owner);
-                startActivity(intent);
+                displayAlert();
 
 
             }
         }
 
+    }
+
+    public void displayAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddOwnerProductActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle("Product Added");
+        builder.setPositiveButton("Back to Home", (dialog, which) -> {
+            sendHome();
+        });
+        builder.show();
+    }
+
+    public void sendHome(){
+        Intent intent = new Intent(this, DisplayOwnerActivity.class);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, owner);
+        startActivity(intent);
     }
 
 

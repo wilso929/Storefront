@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -31,34 +30,61 @@ public class DeleteOwnerProductActivity extends AppCompatActivity {
             owner = (Owner) intent.getSerializableExtra(DisplayOwnerActivity.Owner_Key);
         }
 
+        if (owner.product_list.isEmpty()){
+            spinner = (Spinner) findViewById(R.id.SpinnerOrders);
 
-        //create a spinner with all owner products
-        spinner = (Spinner) findViewById(R.id.SpinnerProducts);
+            ArrayList<String> strings = new ArrayList<>();
+            strings.add("No Products");
 
-        ArrayList<Product> products = owner.getProduct_list();
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, strings);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter<Product> adapter = new ArrayAdapter<Product>(this, android.R.layout.simple_spinner_dropdown_item, products);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
 
-        spinner.setAdapter(adapter);
+            Button button = (Button)findViewById(R.id.completeorderbutton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    displayAlert("No Product to be deleted");
+                }
+            });
+        }else{
+            //create a spinner with all owner products
+            spinner = (Spinner) findViewById(R.id.SpinnerOrders);
 
-        Button button = (Button)findViewById(R.id.deleteproductbutton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Product p = (Product) spinner.getSelectedItem();
-                owner.getProduct_list().remove(p);
+            ArrayList<Product> products = owner.getProduct_list();
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference();
+            ArrayAdapter<Product> adapter = new ArrayAdapter<Product>(this, android.R.layout.simple_spinner_dropdown_item, products);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                myRef.child("Owners").child(owner.getUsername()).child("product_list").child(p.name).removeValue();
+            spinner.setAdapter(adapter);
 
-                sendHome();
-            }
+            Button button = (Button)findViewById(R.id.completeorderbutton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Product p = (Product) spinner.getSelectedItem();
+                    owner.getProduct_list().remove(p);
+
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference();
+
+                    myRef.child("Owners").child(owner.getUsername()).child("product_list").child(p.name).removeValue();
+
+                    displayAlert("Product Deleted");
+                }
+            });
+        }
+    }
+
+    public void displayAlert(String title){
+        AlertDialog.Builder builder = new AlertDialog.Builder(DeleteOwnerProductActivity.this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setPositiveButton("Back to Home", (dialog, which) -> {
+            sendHome();
         });
-
-
+        builder.show();
     }
 
     public void sendHome(){
