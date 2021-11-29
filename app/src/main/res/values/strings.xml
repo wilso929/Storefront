@@ -12,5 +12,7 @@
     <string name="productprice">Price of Product</string>
     <string name="CreateProduct">Create New Product</string>
 
+    <string name="liststores_button">VIEW STORES</string>
+
 
 </resources>

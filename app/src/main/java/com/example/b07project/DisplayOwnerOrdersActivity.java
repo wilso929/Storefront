@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayOwnerOrdersActivity extends AppCompatActivity {
 
@@ -45,8 +46,7 @@ public class DisplayOwnerOrdersActivity extends AppCompatActivity {
 
 
                  */
-
-                ArrayAdapter<Order> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, owner.orders);
+                ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_list_item_1, owner.ordered_orders);
                 listview.setAdapter(adapter);
             }
         }
