@@ -44,6 +44,23 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void delete_product(View view){
+        Intent intent = new Intent(this, DeleteOwnerProductActivity.class);
+        intent.putExtra(Owner_Key, this.owner);
+        startActivity(intent);
+    }
+
+    public void complete_order(View view){
+        Intent intent = new Intent(this, OwnerCompleteOrderActivity.class);
+        intent.putExtra(Owner_Key, this.owner);
+        startActivity(intent);
+    }
+
+    public void sendHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void Alert(String title, String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplayOwnerActivity.this);
         builder.setCancelable(true);
