@@ -1,0 +1,72 @@
+November 29, 2021
+
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- owner side user stories completed
+
+What are you planning on doing today?
+- dedicated back button
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- finished up testing presenter
+
+What are you planning on doing today?
+- debugging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- retrieve store names
+
+What are you planning on doing today?
+- discuss with Howie on user story 6
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Theresa Yu (did not attend)
+
+What have you done since yesterday?
+
+
+What are you planning on doing today?
+
+
+Any impediments or stumbling blocks?
+
+
+
+Name: Skandan Vecham (did not attend)
+
+What have you done since yesterday?
+
+
+What are you planning on doing today?
+
+
+Any impediments or stumbling blocks?
+
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- retrived stores and products, and displayed
+- set up customer login
+
+What are you planning on doing today?
+- getting product display working
+
+Any impediments or stumbling blocks?
+n/a
