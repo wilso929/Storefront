@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 
 /**
  * Allows customer to select items from a store to make an order
@@ -48,13 +46,13 @@ public class SelectItems extends AppCompatActivity {
      * this method will process the order and update
      * the customer and owner. It will return the customer back to
      * the main menu.
-     * @param view
+     * @param view the view
      */
     public void makeOrder(View view) {
-        int currentQuantity = 0;
+        int currentQuantity;
         int i = 0; // index variable
-        double totalPrice = 0.0;
-        ArrayList<Product> orderItems = new ArrayList<Product>();
+        // double totalPrice = 0.0;
+        ArrayList<Product> orderItems = new ArrayList<>();
 
         if (this.selectedOwner != null &&
                 this.selectedOwner.product_list != null &&
@@ -83,13 +81,13 @@ public class SelectItems extends AppCompatActivity {
     /**
      * Returns customer back to the main menu when the customer
      * clicks CANCEL or OK button.
-     * @param view
+     * @param view the view
      */
     public void goBack(View view) {
         Intent intent = new Intent(this, DisplayCustomerActivity.class);
         Bundle intentExtras = this.getIntent().getExtras();
         ArrayList<Owner> allOwners = (intentExtras == null) ? null :
-                (ArrayList<Owner>) intentExtras.getSerializable("All Owners");
+                intentExtras.getParcelableArrayList("All Owners");
 
         intent.putExtra("Customer", (Parcelable) this.customer);
         intent.putExtra("All Owners", allOwners);

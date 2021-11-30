@@ -28,7 +28,7 @@ public class SelectStore extends AppCompatActivity {
         // set the allOwners HashSet and customer
         Bundle intentExtras = getIntent().getExtras(); // a HashSet of owners
         if (intentExtras != null) {
-            this.allOwners = (ArrayList<Owner>) intentExtras.getSerializable("All Owners");
+            this.allOwners = intentExtras.getParcelableArrayList("All Owners");
             this.customer = (Customer) intentExtras.getParcelable(DisplayCustomerActivity.Customer_Key);
         }
         this.allRadioButtons = new HashSet<RadioButton>();
@@ -80,9 +80,9 @@ public class SelectStore extends AppCompatActivity {
 
         if (selectedOwner != null) {
             Intent intent = new Intent(this, SelectItems.class);
-            intent.putExtra("Selected Owner", selectedOwner);
+            intent.putExtra("Selected Owner", (Parcelable) selectedOwner);
             intent.putExtra("Customer", (Parcelable) this.customer);
-            intent.putExtra("All Owners", this.allOwners);
+            intent.putParcelableArrayListExtra("All Owners", this.allOwners);
             startActivity(intent);
         }
     }
@@ -90,7 +90,7 @@ public class SelectStore extends AppCompatActivity {
     public void goBack(View view) {
         Intent intent = new Intent(this, DisplayCustomerActivity.class);
         intent.putExtra("Customer", (Parcelable) this.customer);
-        intent.putExtra("All Owners", this.allOwners);
+        intent.putParcelableArrayListExtra("All Owners", this.allOwners);
         startActivity(intent);
     }
 }

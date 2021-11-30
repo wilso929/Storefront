@@ -1,17 +1,29 @@
 package com.example.b07project;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-//import java.util.HashSet;
-//import java.util.LinkedHashSet;
-import java.util.HashSet;
 
-public class Owner extends User  implements Serializable {
-
+public class Owner extends User  implements Serializable, Parcelable {
 
     String store_name;
-    ArrayList<Product> product_list = new ArrayList<Product>();
-    ArrayList<Order> orders = new ArrayList<Order>();
+    ArrayList<Product> product_list = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<>();
+
+    public static final Creator<Owner> CREATOR = new Creator<Owner>() {
+        // came from implementing Parcelable interface
+        @Override
+        public Owner createFromParcel(Parcel in) {
+            return new Owner(in);
+        }
+
+        @Override
+        public Owner[] newArray(int size) {
+            return new Owner[size];
+        }
+    };
 
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -22,6 +34,9 @@ public class Owner extends User  implements Serializable {
         this.product_list.clear();
         this.orders.clear();
     }
+
+    protected Owner(Parcel in) {
+    } // needed for implementing Parcelable
 
     public ArrayList<Product> getProduct_list() {
         return product_list;
@@ -80,5 +95,11 @@ public class Owner extends User  implements Serializable {
         }
     }
 
+    @Override // from implementing Parcelable, idk what this does
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override // from implementing Parcelable, idk what this does
+    public void writeToParcel(Parcel parcel, int i) {}
 }
