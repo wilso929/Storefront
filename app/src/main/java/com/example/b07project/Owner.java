@@ -36,6 +36,26 @@ public class Owner extends User implements Serializable, Parcelable {
     }
 
     protected Owner(Parcel in) {
+        // read data in the same order that they were written in in writeToParcel method
+        super(in.readString() /* Read 1st string written */,
+                in.readString() /* Read 2nd string written*/);
+        this.store_name = in.readString(); // read 3rd string written
+        this.product_list = new ArrayList<>();
+        this.orders = new ArrayList<>();
+        Object[] tmpProducts = in.readArray(Product.class.getClassLoader());
+        Object[] tmpOrders = in.readArray(Order.class.getClassLoader());
+
+        for (int i = 0; i < tmpProducts.length; i++) {
+            if (tmpProducts[i] instanceof Product) {
+                this.product_list.add((Product) tmpProducts[i]);
+            }
+        }
+
+        for (int i = 0; i < tmpOrders.length; i++) {
+            if (tmpOrders[i] instanceof Order) {
+                this.orders.add((Order) tmpOrders[i]);
+            }
+        }
     } // needed for implementing Parcelable
 
     public ArrayList<Product> getProduct_list() {
@@ -99,11 +119,17 @@ public class Owner extends User implements Serializable, Parcelable {
         }
     }
 
-    @Override // from implementing Parcelable, idk what this does
+    @Override // from implementing Parcelable
     public int describeContents() {
-        return 0;
+        return 0; // return number of fields this class has
     }
 
-    @Override // from implementing Parcelable, idk what this does
-    public void writeToParcel(Parcel parcel, int i) {}
+    @Override // from implementing Parcelable
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.getUsername());
+        parcel.writeString(this.getPassword());
+        parcel.writeString(this.store_name);
+        parcel.writeArray(this.product_list.toArray());
+        parcel.writeArray(this.orders.toArray());
+    }
 }

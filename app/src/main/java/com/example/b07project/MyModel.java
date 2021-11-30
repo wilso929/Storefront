@@ -159,7 +159,7 @@ public class MyModel implements Contract.Model{
         });
     }
 
-    public void Get_Owners(DisplayCustomerActivity c, Contract.Other other){
+    public void Get_Owners(SelectStore c, Contract.Other other){
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Owners");
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
