@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Owner extends User  implements Serializable, Parcelable {
+public class Owner extends User implements Serializable, Parcelable {
 
     String store_name;
     ArrayList<Product> product_list = new ArrayList<>();
@@ -61,10 +61,8 @@ public class Owner extends User  implements Serializable, Parcelable {
     }
 
     public void setOrders(ArrayList<Order> orders) {
-        this.orders = new ArrayList<>();
-
         if (orders != null) {
-            this.orders.addAll(orders);
+            this.orders = orders;
         }
     }
 
@@ -84,6 +82,12 @@ public class Owner extends User  implements Serializable, Parcelable {
     public void add_product(String name, String brand, double price){
         Product p = new Product(name, brand, price);
         product_list.add(p);
+    }
+
+    public void addOrder(Order o) {
+        if (o != null) {
+            this.orders.add(o);
+        }
     }
 
     public void complete_order(Order o){

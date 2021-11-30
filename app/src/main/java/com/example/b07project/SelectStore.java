@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -44,7 +43,7 @@ public class SelectStore extends AppCompatActivity {
     private void displayAllStores() {
         RadioButton button = null;
         RadioGroup rg = (RadioGroup) findViewById(R.id.RadioGroup1);
-        int i = 10546079;
+        // int i = 10546079;
 
         if (allOwners == null || allOwners.isEmpty()) {
             setContentView(R.layout.activity_no_store);
@@ -53,10 +52,10 @@ public class SelectStore extends AppCompatActivity {
             for (Owner owner : allOwners) {
                 button = new RadioButton(this);
                 button.setText(owner.getStore_name());
-                button.setId(i);
+                // button.setId(i);
                 allRadioButtons.add(button);
                 rg.addView(button);
-                i++;
+                // i++;
             }
         }
     }

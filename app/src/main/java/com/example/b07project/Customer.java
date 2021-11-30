@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class Customer extends User implements Parcelable {
 
-    ArrayList<Order> orders = new ArrayList<Order>();
+    ArrayList<Order> orders = new ArrayList<>();
 
     public Customer() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -52,7 +52,10 @@ public class Customer extends User implements Parcelable {
     }
 
     public void setOrders(ArrayList<Order> orders) {
-        this.orders = null;
-        this.orders.addAll(orders);
+        this.orders = new ArrayList<>();
+
+        if (orders != null) {
+            this.orders = orders;
+        }
     }
 }

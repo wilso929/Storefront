@@ -51,7 +51,6 @@ public class SelectItems extends AppCompatActivity {
     public void makeOrder(View view) {
         int currentQuantity;
         int i = 0; // index variable
-        // double totalPrice = 0.0;
         ArrayList<Product> orderItems = new ArrayList<>();
 
         if (this.selectedOwner != null &&
@@ -73,7 +72,7 @@ public class SelectItems extends AppCompatActivity {
             Order order = new Order(customer.getUsername(), orderItems/*, totalPrice*/,
                     false); // create the Order object
             customer.add_order(order); // update the customer's orders
-            selectedOwner.orders.add(order); // update the store owner's orders
+            selectedOwner.addOrder(order); // update the store owner's orders
         }
         goBack(view); // return customer back to the main menu
     }
@@ -90,7 +89,7 @@ public class SelectItems extends AppCompatActivity {
                 intentExtras.getParcelableArrayList("All Owners");
 
         intent.putExtra("Customer", (Parcelable) this.customer);
-        intent.putExtra("All Owners", allOwners);
+        intent.putParcelableArrayListExtra("All Owners", allOwners);
         startActivity(intent);
     }
 }
