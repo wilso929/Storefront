@@ -9,10 +9,11 @@ import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class DisplayCustomerActivity extends AppCompatActivity {
-    public HashSet<Owner> allOwners;
+    public ArrayList<Owner> allOwners;
     private Customer customer;
     private Contract.Other other = new MyOther(new MyModel());
 
@@ -26,7 +27,7 @@ public class DisplayCustomerActivity extends AppCompatActivity {
             this.customer = (Customer) intentExtras.getParcelable(Customer_Key);
         }
 
-        this.allOwners = new HashSet<Owner>();
+        this.allOwners = new ArrayList<Owner>();
         other.Update_Owners(this);
         setContentView(R.layout.activity_customer_home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

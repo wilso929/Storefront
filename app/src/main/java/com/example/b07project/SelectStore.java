@@ -17,7 +17,7 @@ import java.util.HashSet;
  * Class allows customers to select a store to make an order
  */
 public class SelectStore extends AppCompatActivity {
-    private HashSet<Owner> allOwners;
+    private ArrayList<Owner> allOwners;
     private Customer customer;
     private HashSet<RadioButton> allRadioButtons;
 
@@ -28,7 +28,7 @@ public class SelectStore extends AppCompatActivity {
         // set the allOwners HashSet and customer
         Bundle intentExtras = getIntent().getExtras(); // a HashSet of owners
         if (intentExtras != null) {
-            this.allOwners = (HashSet<Owner>) intentExtras.getSerializable("All Owners");
+            this.allOwners = (ArrayList<Owner>) intentExtras.getSerializable("All Owners");
             this.customer = (Customer) intentExtras.getParcelable(DisplayCustomerActivity.Customer_Key);
         }
         this.allRadioButtons = new HashSet<RadioButton>();

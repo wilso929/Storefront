@@ -3,11 +3,12 @@ package com.example.b07project;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Customer extends User implements Parcelable {
 
-    HashSet<Order> orders = new HashSet<>();
+    ArrayList<Order> orders = new ArrayList<Order>();
 
     public Customer() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -46,11 +47,11 @@ public class Customer extends User implements Parcelable {
         // do nothing here
     }
 
-    public HashSet<Order> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(HashSet<Order> orders) {
+    public void setOrders(ArrayList<Order> orders) {
         this.orders = null;
         this.orders.addAll(orders);
     }

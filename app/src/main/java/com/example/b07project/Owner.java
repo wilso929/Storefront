@@ -11,8 +11,7 @@ public class Owner extends User  implements Serializable {
 
     String store_name;
     ArrayList<Product> product_list = new ArrayList<Product>();
-    HashSet<Order> orders = new HashSet<Order>();
-    ArrayList<Order> ordered_orders = new ArrayList<Order>();
+    ArrayList<Order> orders = new ArrayList<Order>();
 
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -22,7 +21,6 @@ public class Owner extends User  implements Serializable {
         this.store_name = store_name;
         this.product_list.clear();
         this.orders.clear();
-        this.ordered_orders.clear();
     }
 
     public ArrayList<Product> getProduct_list() {
@@ -43,16 +41,15 @@ public class Owner extends User  implements Serializable {
         return false;
     }
 
-    public HashSet<Order> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(HashSet<Order> orders) {
-        this.orders = new HashSet<Order>();
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = new ArrayList<>();
 
         if (orders != null) {
             this.orders.addAll(orders);
-            this.ordered_orders = new ArrayList<Order>(orders);
         }
     }
 

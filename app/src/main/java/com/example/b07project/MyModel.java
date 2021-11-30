@@ -94,7 +94,7 @@ public class MyModel implements Contract.Model{
                                 }
                                 owner.setProduct_list(product_list);
                             }else if(snapshot.getKey().equals("order_list")){
-                                HashSet<Order> order_list = new HashSet<Order>();
+                                ArrayList<Order> order_list = new ArrayList<>();
                                 for(DataSnapshot ds : snapshot.getChildren()){
                                     Order order = new Order();
                                     for(DataSnapshot snap : ds.getChildren()){
@@ -128,7 +128,7 @@ public class MyModel implements Contract.Model{
                             if(snapshot.getKey().equals("password")){
                                 customer.setPassword(snapshot.getValue().toString());
                             }else if(snapshot.getKey().equals("order_list")){
-                                HashSet<Order> order_list = new HashSet<Order>();
+                                ArrayList<Order> order_list = new ArrayList<>();
                                 for(DataSnapshot ds : snapshot.getChildren()){
                                     Order order = new Order();
                                     for(DataSnapshot snap : ds.getChildren()){
@@ -169,7 +169,7 @@ public class MyModel implements Contract.Model{
                     Log.e("demo", "Error getting data", task.getException());
 
                 } else {
-                    HashSet<Owner> updated = new HashSet<Owner>();
+                    ArrayList<Owner> updated = new ArrayList<Owner>();
                     for (DataSnapshot big_snapshot : task.getResult().getChildren()) {
                         Owner owner = new Owner();
 
@@ -190,7 +190,7 @@ public class MyModel implements Contract.Model{
                                 owner.setProduct_list(product_list);
 
                             } else if (snapshot.getKey().equals("order_list")) {
-                                HashSet<Order> order_list = new HashSet<Order>();
+                                ArrayList<Order> order_list = new ArrayList<>();
 
                                 for (DataSnapshot small_snapshot : snapshot.getChildren()) {
                                     Order order = new Order();

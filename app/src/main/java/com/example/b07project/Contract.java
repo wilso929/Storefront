@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public interface Contract {
@@ -27,6 +28,6 @@ public interface Contract {
 
     interface Other{
         void Update_Owners(DisplayCustomerActivity c);
-        void Give_Owners(DisplayCustomerActivity c, HashSet<Owner> updated);
+        void Give_Owners(DisplayCustomerActivity c, ArrayList<Owner> updated);
     }
 }

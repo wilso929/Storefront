@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MyOther implements Contract.Other{
@@ -13,9 +14,9 @@ public class MyOther implements Contract.Other{
         model.Get_Owners(c, this);
     }
 
-    public void Give_Owners(DisplayCustomerActivity c, HashSet<Owner> updated) {
+    public void Give_Owners(DisplayCustomerActivity c, ArrayList<Owner> updated) {
         if (updated != null) {
-            c.allOwners = new HashSet<Owner>();
+            c.allOwners = new ArrayList<Owner>();
             c.allOwners.addAll(updated);
         }
     }

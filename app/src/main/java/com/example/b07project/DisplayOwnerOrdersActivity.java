@@ -46,7 +46,7 @@ public class DisplayOwnerOrdersActivity extends AppCompatActivity {
 
 
                  */
-                ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_list_item_1, owner.ordered_orders);
+                ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_list_item_1, owner.orders);
                 listview.setAdapter(adapter);
             }
         }

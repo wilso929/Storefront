@@ -88,8 +88,8 @@ public class SelectItems extends AppCompatActivity {
     public void goBack(View view) {
         Intent intent = new Intent(this, DisplayCustomerActivity.class);
         Bundle intentExtras = this.getIntent().getExtras();
-        HashSet<Owner> allOwners = (intentExtras == null) ? null :
-                (HashSet<Owner>) intentExtras.getSerializable("All Owners");
+        ArrayList<Owner> allOwners = (intentExtras == null) ? null :
+                (ArrayList<Owner>) intentExtras.getSerializable("All Owners");
 
         intent.putExtra("Customer", (Parcelable) this.customer);
         intent.putExtra("All Owners", allOwners);
