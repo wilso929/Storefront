@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 /**
@@ -52,6 +55,8 @@ public class SelectItems extends AppCompatActivity {
         int currentQuantity;
         int i = 0; // index variable
         ArrayList<Product> orderItems = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
 
         if (this.selectedOwner != null &&
                 this.selectedOwner.product_list != null &&
@@ -73,6 +78,11 @@ public class SelectItems extends AppCompatActivity {
                     false); // create the Order object
             customer.add_order(order); // update the customer's orders
             selectedOwner.addOrder(order); // update the store owner's orders
+
+            myRef.child("Owners").child(selectedOwner.getUsername()).child("order_list").child(
+                    this.customer.getUsername()).setValue(order); // update owner in firebase
+            myRef.child("Customers").child(this.customer.getUsername()).child("order_list").child(
+                    this.selectedOwner.getUsername()).setValue(order); // update customer in firebase
         }
         goBack(view); // return customer back to the main menu
     }
