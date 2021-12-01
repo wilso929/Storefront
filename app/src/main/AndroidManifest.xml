@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07Project">
         <activity
+            android:name=".OwnerCompleteOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteOwnerProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddOwnerProductActivity"
             android:exported="false" />
         <activity

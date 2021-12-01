@@ -7,28 +7,32 @@
 
     <Button
         android:id="@+id/button_MakeOrder"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="218dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/button"
         android:onClick="makeNewOrder"
         android:text="Make a New Order"
-        app:layout_constraintBottom_toTopOf="@+id/button_BrowseStores"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button_Exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_BrowseStores"
-        android:layout_width="150dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="241dp"
-        android:onClick="seeAvailableStores"
-        android:text="Browse Stores"
+        android:id="@+id/button_Exit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/button"
+        android:onClick="backButton"
+        android:text="Exit"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_MakeOrder"
-        app:layout_constraintVertical_bias="0.611" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

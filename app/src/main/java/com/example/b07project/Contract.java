@@ -7,7 +7,7 @@ public interface Contract {
     interface Model{
         void Check_Info(String username, String password, String type, Presenter presenter);
         void Add_User(User user, String type, Presenter presenter);
-        void Get_Owners(DisplayCustomerActivity c, Other other);
+        void Get_Owners(SelectStore c, Other other);
     }
 
     interface View{
@@ -27,7 +27,7 @@ public interface Contract {
     }
 
     interface Other{
-        void Update_Owners(DisplayCustomerActivity c);
-        void Give_Owners(DisplayCustomerActivity c, ArrayList<Owner> updated);
+        void Update_Owners(SelectStore c);
+        void Give_Owners(SelectStore c, ArrayList<Owner> updated);
     }
 }

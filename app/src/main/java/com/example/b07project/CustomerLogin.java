@@ -9,8 +9,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.HashSet;
-
 public class CustomerLogin extends AppCompatActivity implements Contract.View {
 
     private Contract.Presenter presenter;

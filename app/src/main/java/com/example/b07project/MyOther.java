@@ -10,14 +10,15 @@ public class MyOther implements Contract.Other{
         this.model = model;
     }
 
-    public void Update_Owners(DisplayCustomerActivity c) {
+    public void Update_Owners(SelectStore c) {
         model.Get_Owners(c, this);
     }
 
-    public void Give_Owners(DisplayCustomerActivity c, ArrayList<Owner> updated) {
+    public void Give_Owners(SelectStore c, ArrayList<Owner> updated) {
         if (updated != null) {
             c.allOwners = new ArrayList<Owner>();
             c.allOwners.addAll(updated);
+            c.displayAllStores();
         }
     }
 }

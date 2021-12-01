@@ -50,6 +50,9 @@ public class SelectItemsAdapter extends
                         } catch (NumberFormatException exception) {
                             this.currentText = this.previousText;
                             quantities[position] = 0;
+                        } catch (NullPointerException exception) {
+                            System.out.println("NullPointerException occurred when attempting to " +
+                                    "update quantity. Null Quantities Array");
                         }
                     }
                 }
@@ -96,19 +99,20 @@ public class SelectItemsAdapter extends
                                  final int position) {
         if (this.storeOwner != null &&
                 this.storeOwner.product_list != null &&
-                position < this.storeOwner.product_list.size()) {
+                position < this.storeOwner.product_list.size() && position >= 0) {
             Object[] products = this.storeOwner.product_list.toArray();
             Product selectedProduct = (Product) products[position];
-            String text = "Name: " + selectedProduct.getName() +
-                    "\nBrand: " + selectedProduct.getBrand() +
-                    "\nPrice:" + selectedProduct.getPrice() +
-                    "\\each";
+            String text = "Name: " + selectedProduct.getName() + "\nBrand: " +
+                    selectedProduct.getBrand() + "\nPrice: " + selectedProduct.getPrice() +
+                    " \\ each";
             viewHolder.setTextViewText(text);
-            notifyItemChanged(position);
+            // notifyItemChanged(position);
         }
 
-        if (quantities != null) {
+        if (quantities != null &&
+                position < this.storeOwner.product_list.size() && position >= 0) {
             viewHolder.setTextEditorValue(quantities[position]);
+            // notifyItemChanged(position);
         }
     }
 
@@ -120,8 +124,7 @@ public class SelectItemsAdapter extends
     }
 
     public int getQuantityAtPosition(final int position) {
-        if (this.quantities != null && position < quantities.length
-                && position >= 0) {
+        if (this.quantities != null && position < quantities.length && position >= 0) {
             return this.quantities[position];
         }
         return 0;

@@ -4,11 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Customer extends User implements Parcelable {
 
-    ArrayList<Order> orders = new ArrayList<Order>();
+    ArrayList<Order> orders = new ArrayList<>();
 
     public Customer() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -19,6 +18,16 @@ public class Customer extends User implements Parcelable {
     }
 
     protected Customer(Parcel in) {
+        // read data in the same order data was written in writeToParcel
+        super(in.readString(), in.readString()); // reads first two strings written to the parcel
+        this.orders = new ArrayList<>();
+        Object[] tmpOrders = in.readArray(Order.class.getClassLoader());
+
+        for (int i = 0; i < tmpOrders.length; i++) {
+            if (tmpOrders[i] instanceof Order) {
+                this.orders.add((Order) tmpOrders[i]);
+            }
+        }
     }
 
     public static final Creator<Customer> CREATOR = new Creator<Customer>() {
@@ -44,7 +53,9 @@ public class Customer extends User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        // do nothing here
+        parcel.writeString(this.getUsername());
+        parcel.writeString(this.getPassword());
+        parcel.writeArray(this.orders.toArray());
     }
 
     public ArrayList<Order> getOrders() {
@@ -52,7 +63,10 @@ public class Customer extends User implements Parcelable {
     }
 
     public void setOrders(ArrayList<Order> orders) {
-        this.orders = null;
-        this.orders.addAll(orders);
+        this.orders = new ArrayList<>();
+
+        if (orders != null) {
+            this.orders = orders;
+        }
     }
 }

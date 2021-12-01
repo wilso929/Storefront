@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 public class DisplayOwnerActivity extends AppCompatActivity {
 
     Owner owner;
@@ -28,19 +30,36 @@ public class DisplayOwnerActivity extends AppCompatActivity {
 
     public void view_products(View view) {
         Intent intent = new Intent(this, DisplayOwnerProductsActivity.class);
-        intent.putExtra(Owner_Key, this.owner);
+        intent.putExtra(Owner_Key, (Serializable) this.owner);
         startActivity(intent);
     }
 
     public void view_orders(View view){
         Intent intent = new Intent(this, DisplayOwnerOrdersActivity.class);
-        intent.putExtra(Owner_Key, this.owner);
+        intent.putExtra(Owner_Key, (Serializable) this.owner);
         startActivity(intent);
     }
 
     public void add_product(View view){
         Intent intent = new Intent(this, AddOwnerProductActivity.class);
-        intent.putExtra(Owner_Key, this.owner);
+        intent.putExtra(Owner_Key, (Serializable) this.owner);
+        startActivity(intent);
+    }
+
+    public void delete_product(View view){
+        Intent intent = new Intent(this, DeleteOwnerProductActivity.class);
+        intent.putExtra(Owner_Key, (Serializable) this.owner);
+        startActivity(intent);
+    }
+
+    public void complete_order(View view){
+        Intent intent = new Intent(this, OwnerCompleteOrderActivity.class);
+        intent.putExtra(Owner_Key, (Serializable) this.owner);
+        startActivity(intent);
+    }
+
+    public void sendHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

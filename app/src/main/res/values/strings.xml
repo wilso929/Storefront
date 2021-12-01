@@ -1,11 +1,14 @@
 <resources>
-    <string name="app_name">B07Project</string>
+    <string name="app_name">StoreFront</string>
     <string name="username">Enter Username</string>
     <string name="password">Enter Password</string>
 
     <string name="listorders_button">VIEW ORDERS</string>
     <string name="listproducts_button">VIEW PRODUCTS</string>
     <string name="addproduct_button">ADD PRODUCT</string>
+    <string name="deleteproduct_button">DELETE PRODUCT</string>
+    <string name="completeorder_button">COMPLETE ORDER</string>
+    <string name="sendhome_button">BACK TO LOGIN</string>
 
     <string name="productname">Enter Name of Product</string>
     <string name="brandname">Enter Brand of Product</string>
@@ -13,6 +16,7 @@
     <string name="CreateProduct">Create New Product</string>
 
     <string name="liststores_button">VIEW STORES</string>
+    <string name="BackButton">BACK</string>
 
 
 </resources>

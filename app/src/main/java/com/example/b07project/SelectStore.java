@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -17,31 +16,33 @@ import java.util.HashSet;
  * Class allows customers to select a store to make an order
  */
 public class SelectStore extends AppCompatActivity {
-    private ArrayList<Owner> allOwners;
+    public ArrayList<Owner> allOwners;
     private Customer customer;
     private HashSet<RadioButton> allRadioButtons;
+    private final Contract.Other other = new MyOther(new MyModel());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // set the allOwners HashSet and customer
-        Bundle intentExtras = getIntent().getExtras(); // a HashSet of owners
+        Bundle intentExtras = getIntent().getExtras();
         if (intentExtras != null) {
-            this.allOwners = (ArrayList<Owner>) intentExtras.getSerializable("All Owners");
             this.customer = (Customer) intentExtras.getParcelable(DisplayCustomerActivity.Customer_Key);
         }
+        this.allOwners = new ArrayList<Owner>();
+        this.other.Update_Owners(this);
         this.allRadioButtons = new HashSet<RadioButton>();
 
-        setContentView(R.layout.activity_select_store);
+        setContentView(R.layout.activity_no_store);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        displayAllStores();
     }
 
     /**
      * Displays all the stores
      */
-    private void displayAllStores() {
+    public void displayAllStores() {
+        setContentView(R.layout.activity_select_store);
         RadioButton button = null;
         RadioGroup rg = (RadioGroup) findViewById(R.id.RadioGroup1);
         int i = 10546079;
@@ -54,9 +55,8 @@ public class SelectStore extends AppCompatActivity {
                 button = new RadioButton(this);
                 button.setText(owner.getStore_name());
                 button.setId(i);
-                allRadioButtons.add(button);
                 rg.addView(button);
-                i++;
+                // i++;
             }
         }
     }
@@ -69,20 +69,23 @@ public class SelectStore extends AppCompatActivity {
     public void onStoreSelected(View view) {
         Object[] ownersArray = allOwners.toArray();
         Owner selectedOwner = null;
+        RadioGroup rg = (RadioGroup) findViewById(R.id.RadioGroup1);
+        View radioButton = null;
 
-        int i = 0;
-        for (RadioButton rb : allRadioButtons) {
-            if (rb.isChecked()) {
-                selectedOwner = (Owner) ownersArray[i];
+        for (int i = 0; i < ownersArray.length; i++) {
+            radioButton = rg.getChildAt(i);
+            if (radioButton instanceof RadioButton) {
+                if (((RadioButton) radioButton).isChecked()) {
+                    selectedOwner = (Owner) ownersArray[i];
+                }
             }
-            i++;
         }
 
         if (selectedOwner != null) {
             Intent intent = new Intent(this, SelectItems.class);
-            intent.putExtra("Selected Owner", selectedOwner);
+            intent.putExtra("Selected Owner", (Parcelable) selectedOwner);
             intent.putExtra("Customer", (Parcelable) this.customer);
-            intent.putExtra("All Owners", this.allOwners);
+            intent.putParcelableArrayListExtra("All Owners", this.allOwners);
             startActivity(intent);
         }
     }
@@ -90,7 +93,6 @@ public class SelectStore extends AppCompatActivity {
     public void goBack(View view) {
         Intent intent = new Intent(this, DisplayCustomerActivity.class);
         intent.putExtra("Customer", (Parcelable) this.customer);
-        intent.putExtra("All Owners", this.allOwners);
         startActivity(intent);
     }
 }
