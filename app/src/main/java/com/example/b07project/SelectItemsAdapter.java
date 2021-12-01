@@ -19,21 +19,19 @@ public class SelectItemsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final EditText editText;
-        private final int position;
 
         public ViewHolder(View view) {
             super(view);
-            this.position = getLayoutPosition();
             textView = (TextView) view.findViewById(R.id.productDesc);
             editText = (EditText) view.findViewById(R.id.editQuantity);
             editText.addTextChangedListener(new TextWatcher() {
-                private boolean textChanged;
                 String previousText, currentText;
+                private final int position =
+                        getAdapterPosition(); // not sure why I can't use getAbsoluteAdapterPosition
 
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     this.currentText = charSequence.toString();
-                    this.textChanged = false;
                 }
 
                 @Override
@@ -46,23 +44,22 @@ public class SelectItemsAdapter extends
                         // attempt to update the quantities array
                         try {
                             quantities[position] = Integer.parseInt(this.currentText);
-                            textChanged = true;
                         } catch (NumberFormatException exception) {
-                            this.currentText = this.previousText;
+                            System.out.println("The text entered is not an integer. The quantity" +
+                                    " will be reset to 0.");
+                            this.currentText = "0";
                             quantities[position] = 0;
                         } catch (NullPointerException exception) {
                             System.out.println("NullPointerException occurred when attempting to " +
                                     "update quantity. Null Quantities Array");
+                            this.currentText = this.previousText;
                         }
                     }
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    if (textChanged) {
-                        textChanged = false;
-                        editText.setText(currentText); // change the text
-                    }
+                    editText.setText(currentText);
                 }
             });
         }
@@ -104,13 +101,13 @@ public class SelectItemsAdapter extends
             Product selectedProduct = (Product) products[position];
             String text = "Name: " + selectedProduct.getName() + "\nBrand: " +
                     selectedProduct.getBrand() + "\nPrice: " + selectedProduct.getPrice() +
-                    " \\ each";
+                    " / each";
             viewHolder.setTextViewText(text);
             // notifyItemChanged(position);
         }
 
         if (quantities != null &&
-                position < this.storeOwner.product_list.size() && position >= 0) {
+                position < this.quantities.length && position >= 0) {
             viewHolder.setTextEditorValue(quantities[position]);
             // notifyItemChanged(position);
         }
@@ -124,9 +121,7 @@ public class SelectItemsAdapter extends
     }
 
     public int getQuantityAtPosition(final int position) {
-        if (this.quantities != null && position < quantities.length && position >= 0) {
-            return this.quantities[position];
-        }
-        return 0;
+        return (this.quantities != null && position < quantities.length && position >= 0) ?
+        this.quantities[position] : 0;
     }
 }
