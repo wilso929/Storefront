@@ -1,1 +1,73 @@
+December 1, 2021
 
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- debugging
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- added equals and hashcode to owner, customer
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- creating orders
+
+Any impediments or stumbling blocks?
+- emulator
+
+
+Name: Theresa Yu 
+
+What have you done since yesterday?
+- debugged code for user stories 7, 8
+
+What are you planning on doing today?
+- creating orders
+
+Any impediments or stumbling blocks?
+- emulator
+
+
+Name: Skandan Vecham 
+
+What have you done since yesterday?
+- show products
+
+What are you planning on doing today?
+- creating orders
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- changed firebase retrieval of owner lists
+- user stories 7,8
+
+What are you planning on doing today?
+- finish creating orders
+
+Any impediments or stumbling blocks?
+n/a
