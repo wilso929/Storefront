@@ -42,21 +42,15 @@ public class AddOwnerProductActivity extends AppCompatActivity {
                 Alert("Error", "Product already exists.");
             }else{
                 //add product to owners product list and database
-
                 owner.getProduct_list().add(new_prod);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference();
 
                 myRef.child("Owners").child(owner.getUsername()).child("product_list").child(name).setValue(new_prod);
-
-
                 displayAlert();
-
-
             }
         }
-
     }
 
     public void displayAlert(){

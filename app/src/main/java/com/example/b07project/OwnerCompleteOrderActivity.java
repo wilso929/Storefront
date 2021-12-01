@@ -66,8 +66,12 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Order order = (Order) spinner.getSelectedItem();
 
-                    if (order.completed)
+                    if (order.completed){
                         displayAlert("Order already completed");
+                        return;
+                    }
+
+
                     for (Order o: owner.getOrders()){
                         if (o.equals(order)){
                             o.setCompleted(true);
