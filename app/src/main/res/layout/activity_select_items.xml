@@ -22,7 +22,7 @@
         android:layout_height="590dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        tools:itemCount="500"/>
+        tools:itemCount="1024"/>
 
     <Button
         android:id="@+id/button8"
