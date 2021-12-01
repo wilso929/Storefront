@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,14 +52,18 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
             });
         }else{
             //create a spinner with all owner products
+
             spinner = (Spinner) findViewById(R.id.SpinnerOrders);
 
             ArrayList<Order> orders = owner.getOrders();
 
             ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_spinner_dropdown_item, orders);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
 
             spinner.setAdapter(adapter);
+
+
 
             Button button = (Button)findViewById(R.id.completeorderbutton);
             button.setOnClickListener(new View.OnClickListener() {
