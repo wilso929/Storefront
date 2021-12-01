@@ -1,0 +1,73 @@
+November 30, 2021
+
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- created a back button in each menu
+- merged everything to master branch
+- debugged
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- debugging
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- tried to display products
+
+What are you planning on doing today?
+- continue display products/ customer user stories
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Theresa Yu 
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- customer user stories
+
+Any impediments or stumbling blocks?
+- emulator
+
+
+Name: Skandan Vecham 
+
+What have you done since yesterday?
+- user story 6
+
+What are you planning on doing today?
+- customer user stories
+
+Any impediments or stumbling blocks?
+- accessing firebase
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- debugging
+
+What are you planning on doing today?
+- changing hashsets to arraylists
+
+Any impediments or stumbling blocks?
+n/a
