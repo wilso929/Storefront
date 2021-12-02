@@ -114,7 +114,7 @@ public class SelectItems extends AppCompatActivity {
      */
     private void updateFirebase(final boolean updateOwner, Order order, Date date) {
         if (adapter != null && customer != null && selectedOwner != null && order != null &&
-                date != null) {
+                date != null && selectedOwner.getProduct_list() != null) {
             final String userType = updateOwner ? "Owners" : "Customers";
             final String primaryUserName = updateOwner ? selectedOwner.getUsername() :
                     customer.getUsername();
