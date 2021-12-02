@@ -3,9 +3,11 @@ package com.example.b07project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,10 +57,26 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
 
             ArrayList<Order> orders = owner.getOrders();
 
-            ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_spinner_dropdown_item, orders);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            //ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_spinner_dropdown_item, orders);
+            //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_expandable_list_item_1, orders);
+            adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
 
             spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    Order order = (Order) spinner.getSelectedItem();
+                    TextView tv = findViewById(R.id.textView_displayorder);
+                    tv.setText(order.toString());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             Button button = (Button)findViewById(R.id.completeorderbutton);
             button.setOnClickListener(new View.OnClickListener() {

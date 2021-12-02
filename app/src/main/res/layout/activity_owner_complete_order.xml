@@ -7,34 +7,51 @@
     tools:context=".DeleteOwnerProductActivity">
 
     <Button
-        android:id="@+id/completeorderbutton"
-        android:layout_width="0dp"
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="376dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="@color/button"
-        android:text="@string/completeorder_button"
+        android:onClick="backButton"
+        android:text="@string/BackButton"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/completeorderbutton" />
+
+    <Button
+        android:id="@+id/completeorderbutton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/button"
+
+        android:text="@string/completeorder_button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_displayorder" />
 
     <Spinner
         android:id="@+id/SpinnerOrders"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:minHeight="48dp"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="108dp"
         android:dropDownWidth="wrap_content"
         android:dropDownHeight="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/completeorderbutton"
+        android:minHeight="135dp"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.Toolbar
@@ -45,7 +62,6 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,19 +70,17 @@
         app:title="Complete Orders"
         tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="86dp"
-        android:layout_marginBottom="241dp"
-        android:backgroundTint="@color/button"
-        android:onClick="backButton"
-        android:text="@string/BackButton"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView_displayorder"
+        android:layout_width="300dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/completeorderbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/completeorderbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerOrders" />
 </androidx.constraintlayout.widget.ConstraintLayout>
