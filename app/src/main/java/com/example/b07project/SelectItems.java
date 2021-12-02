@@ -85,11 +85,7 @@ public class SelectItems extends AppCompatActivity {
     public void goBack(View view) {
         Intent intent = new Intent(this, DisplayCustomerActivity.class);
         Bundle intentExtras = this.getIntent().getExtras();
-        ArrayList<Owner> allOwners = (intentExtras == null) ? null :
-                intentExtras.getParcelableArrayList("All Owners");
-
         intent.putExtra("Customer", (Parcelable) this.customer);
-        intent.putParcelableArrayListExtra("All Owners", allOwners);
         startActivity(intent);
     }
 }

@@ -33,6 +33,12 @@ public class DisplayCustomerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void view_orders(View view){
+        Intent intent = new Intent(this, DisplayCustomerOrdersActivity.class);
+        intent.putExtra(Customer_Key, (Parcelable) this.customer);
+        startActivity(intent);
+    }
+
     public void seeAvailableStores(View view) {
         Intent intent = new Intent(this, SelectStore.class);
         intent.putExtra(Customer_Key, (Parcelable) this.customer);

@@ -23,7 +23,7 @@ public class SelectItemsAdapter extends
 
         public ViewHolder(View view) {
             super(view);
-            this.position = getLayoutPosition();
+            this.position = getAdapterPosition();
             textView = (TextView) view.findViewById(R.id.productDesc);
             editText = (EditText) view.findViewById(R.id.editQuantity);
             editText.addTextChangedListener(new TextWatcher() {
@@ -42,7 +42,7 @@ public class SelectItemsAdapter extends
                     this.currentText = charSequence.toString().replace(
                             "-", ""); // remove possibility of negative quantities
 
-                    if (!(this.previousText.equals(this.currentText))) {
+                    if (!(this.previousText.equals(this.currentText)) && position >= 0) {
                         // attempt to update the quantities array
                         try {
                             quantities[position] = Integer.parseInt(this.currentText);
