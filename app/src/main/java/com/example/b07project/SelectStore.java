@@ -10,7 +10,6 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Class allows customers to select a store to make an order
@@ -18,7 +17,6 @@ import java.util.HashSet;
 public class SelectStore extends AppCompatActivity {
     public ArrayList<Owner> allOwners;
     private Customer customer;
-    private HashSet<RadioButton> allRadioButtons;
     private final Contract.Other other = new MyOther(new MyModel());
 
     @Override
@@ -30,9 +28,8 @@ public class SelectStore extends AppCompatActivity {
         if (intentExtras != null) {
             this.customer = (Customer) intentExtras.getParcelable(DisplayCustomerActivity.Customer_Key);
         }
-        this.allOwners = new ArrayList<Owner>();
+        this.allOwners = new ArrayList<>();
         this.other.Update_Owners(this);
-        this.allRadioButtons = new HashSet<RadioButton>();
 
         setContentView(R.layout.activity_no_store);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -43,7 +40,7 @@ public class SelectStore extends AppCompatActivity {
      */
     public void displayAllStores() {
         setContentView(R.layout.activity_select_store);
-        RadioButton button = null;
+        RadioButton button;
         RadioGroup rg = (RadioGroup) findViewById(R.id.RadioGroup1);
         int i = 10546079;
 
@@ -64,13 +61,13 @@ public class SelectStore extends AppCompatActivity {
     /**
      * Once the OK button is selected, this method directs user
      * to make an order from the store they selected.
-     * @param view
+     * @param view the view
      */
     public void onStoreSelected(View view) {
         Object[] ownersArray = allOwners.toArray();
         Owner selectedOwner = null;
         RadioGroup rg = (RadioGroup) findViewById(R.id.RadioGroup1);
-        View radioButton = null;
+        View radioButton;
 
         for (int i = 0; i < ownersArray.length; i++) {
             radioButton = rg.getChildAt(i);

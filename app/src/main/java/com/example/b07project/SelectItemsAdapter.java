@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 // This class is responsible for populating the store's inventory to the owner
@@ -19,52 +20,14 @@ public class SelectItemsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final EditText editText;
-        private final int position;
+        private final MyEditTextListener myEditTextListener;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, MyEditTextListener myEditTextListener) {
             super(view);
-            this.position = getAdapterPosition();
             textView = (TextView) view.findViewById(R.id.productDesc);
             editText = (EditText) view.findViewById(R.id.editQuantity);
-            editText.addTextChangedListener(new TextWatcher() {
-                private boolean textChanged;
-                String previousText, currentText;
-
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    this.currentText = charSequence.toString();
-                    this.textChanged = false;
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    this.previousText = this.currentText;
-                    this.currentText = charSequence.toString().replace(
-                            "-", ""); // remove possibility of negative quantities
-
-                    if (!(this.previousText.equals(this.currentText)) && position >= 0) {
-                        // attempt to update the quantities array
-                        try {
-                            quantities[position] = Integer.parseInt(this.currentText);
-                            textChanged = true;
-                        } catch (NumberFormatException exception) {
-                            this.currentText = this.previousText;
-                            quantities[position] = 0;
-                        } catch (NullPointerException exception) {
-                            System.out.println("NullPointerException occurred when attempting to " +
-                                    "update quantity. Null Quantities Array");
-                        }
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    if (textChanged) {
-                        textChanged = false;
-                        editText.setText(currentText); // change the text
-                    }
-                }
-            });
+            this.myEditTextListener = myEditTextListener;
+            editText.addTextChangedListener(myEditTextListener);
         }
 
         public void setTextViewText(String newText) {
@@ -73,6 +36,45 @@ public class SelectItemsAdapter extends
 
         public void setTextEditorValue(int quantity) {
             this.editText.setText(String.valueOf(quantity));
+        }
+    }
+
+    private class MyEditTextListener implements TextWatcher{
+        private int position;
+        String previousText, currentText;
+
+        public void updatePosition(int position){
+            this.position = position;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            this.currentText = charSequence.toString();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            this.previousText = this.currentText;
+            this.currentText = charSequence.toString().replace(
+                    "-", ""); // remove possibility of negative quantities
+
+            if (!(this.previousText.equals(this.currentText))) {
+                // attempt to update the quantities array
+                try {
+                    quantities[position] = Integer.parseInt(this.currentText);
+                } catch (NumberFormatException exception) {
+                    this.currentText = "0";
+                    quantities[position] = 0;
+                } catch (NullPointerException exception) {
+                    System.out.println("NullPointerException occurred when attempting to " +
+                            "update quantity. Null Quantities Array");
+                    this.currentText = "0";
+                }
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
         }
     }
 
@@ -86,17 +88,19 @@ public class SelectItemsAdapter extends
     }
 
     // inflating a layout from XML and returning the holder
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.layout_items_products, viewGroup, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, new MyEditTextListener());
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder,
                                  final int position) {
+        viewHolder.myEditTextListener.updatePosition(viewHolder.getAdapterPosition());
         if (this.storeOwner != null &&
                 this.storeOwner.product_list != null &&
                 position < this.storeOwner.product_list.size() && position >= 0) {
@@ -106,13 +110,11 @@ public class SelectItemsAdapter extends
                     selectedProduct.getBrand() + "\nPrice: " + selectedProduct.getPrice() +
                     " \\ each";
             viewHolder.setTextViewText(text);
-            // notifyItemChanged(position);
         }
 
         if (quantities != null &&
-                position < this.storeOwner.product_list.size() && position >= 0) {
+                position < this.quantities.length && position >= 0) {
             viewHolder.setTextEditorValue(quantities[position]);
-            // notifyItemChanged(position);
         }
     }
 
@@ -124,9 +126,7 @@ public class SelectItemsAdapter extends
     }
 
     public int getQuantityAtPosition(final int position) {
-        if (this.quantities != null && position < quantities.length && position >= 0) {
-            return this.quantities[position];
-        }
-        return 0;
+        return (this.quantities != null && position < quantities.length && position >= 0) ?
+                this.quantities[position] : 0;
     }
 }

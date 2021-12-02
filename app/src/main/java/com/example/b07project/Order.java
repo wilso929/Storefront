@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.jar.Attributes;
+// import java.util.jar.Attributes;
 
 public class Order implements Serializable {
     String customer;
-    ArrayList<Product> products = new ArrayList<Product>();
+    ArrayList<Product> products = new ArrayList<>();
     String owner;
     boolean completed;
 
