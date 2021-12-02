@@ -55,8 +55,6 @@ public class SelectItems extends AppCompatActivity {
         int currentQuantity;
         int i = 0; // index variable
         ArrayList<Product> orderItems = new ArrayList<>();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
 
         if (this.selectedOwner != null &&
                 this.selectedOwner.product_list != null &&
@@ -68,21 +66,18 @@ public class SelectItems extends AppCompatActivity {
                 for (int j = 0; j < currentQuantity; j++) {
                     orderItems.add(new Product(product.getName(), product.getBrand(),
                             product.getPrice()));
-                    //totalPrice += product.getPrice(); // add the price each time
                 }
 
                 i++;
             }
 
-            Order order = new Order(customer.getUsername(), orderItems/*, totalPrice*/,
-                    false); // create the Order object
-            customer.add_order(order); // update the customer's orders
-            selectedOwner.addOrder(order); // update the store owner's orders
-
-            myRef.child("Owners").child(selectedOwner.getUsername()).child("order_list").child(
-                    this.customer.getUsername()).setValue(order); // update owner in firebase
-            myRef.child("Customers").child(this.customer.getUsername()).child("order_list").child(
-                    this.selectedOwner.getUsername()).setValue(order); // update customer in firebase
+            Order order = new Order(customer.getUsername(), orderItems, false);
+            customer.add_order(order); // update the customer's order list
+            selectedOwner.addOrder(order); // update the store owner's order list
+            this.updateFirebase(true, this.customer, this.selectedOwner,
+                    order); // updates Owner
+            this.updateFirebase(false, this.customer, this.selectedOwner,
+                    order); // updates Customer
         }
         goBack(view); // return customer back to the main menu
     }
@@ -101,5 +96,35 @@ public class SelectItems extends AppCompatActivity {
         intent.putExtra("Customer", (Parcelable) this.customer);
         intent.putParcelableArrayListExtra("All Owners", allOwners);
         startActivity(intent);
+    }
+
+    /**
+     * A method that updates a user's firebase data once an order is made
+     *
+     * @param userTypeOwner Enter true if you want to update the owner, false if you want to update
+     *                      the customer
+     * @param customer The customer that made the order
+     * @param owner The owner that the customer made the order to
+     * @param order the order that the customer made
+     */
+    private void updateFirebase(final boolean userTypeOwner, Customer customer, Owner owner,
+                                Order order) {
+        if (customer != null && owner != null && order != null) {
+            final String userType = userTypeOwner ? "Owners" : "Customers";
+            final String orderListUserName = userTypeOwner ? customer.getUsername() :
+                    owner.getUsername();
+            final String primaryUserName = userTypeOwner ? owner.getUsername() :
+                    customer.getUsername();
+            ArrayList<Product> products = order.getProducts();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference().child(userType).child(
+                    primaryUserName).child("order_list").child(orderListUserName);
+            myRef.child("Customer").setValue(order.getCustomer());
+            myRef.child("Completed").setValue(order.isCompleted());
+
+            for (Product product : products) {
+                myRef.child("product_list").child(product.getName()).setValue(product);
+            }
+        }
     }
 }

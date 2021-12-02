@@ -2,13 +2,13 @@ package com.example.b07project;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 // This class is responsible for populating the store's inventory to the owner
@@ -20,12 +20,10 @@ public class SelectItemsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final EditText editText;
-        private MyEditTextListener myEditTextListener;
-        private final int position;
+        private final MyEditTextListener myEditTextListener;
 
         public ViewHolder(View view, MyEditTextListener myEditTextListener) {
             super(view);
-            this.position = getAdapterPosition();
             textView = (TextView) view.findViewById(R.id.productDesc);
             editText = (EditText) view.findViewById(R.id.editQuantity);
             this.myEditTextListener = myEditTextListener;
@@ -43,18 +41,15 @@ public class SelectItemsAdapter extends
 
     private class MyEditTextListener implements TextWatcher{
         private int position;
+        String previousText, currentText;
 
         public void updatePosition(int position){
             this.position = position;
         }
 
-        private boolean textChanged;
-        String previousText, currentText;
-
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             this.currentText = charSequence.toString();
-            this.textChanged = false;
         }
 
         @Override
@@ -67,13 +62,13 @@ public class SelectItemsAdapter extends
                 // attempt to update the quantities array
                 try {
                     quantities[position] = Integer.parseInt(this.currentText);
-                    textChanged = true;
                 } catch (NumberFormatException exception) {
-                    this.currentText = this.previousText;
+                    this.currentText = "0";
                     quantities[position] = 0;
                 } catch (NullPointerException exception) {
                     System.out.println("NullPointerException occurred when attempting to " +
                             "update quantity. Null Quantities Array");
+                    this.currentText = "0";
                 }
             }
         }
@@ -93,6 +88,7 @@ public class SelectItemsAdapter extends
     }
 
     // inflating a layout from XML and returning the holder
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
@@ -114,13 +110,11 @@ public class SelectItemsAdapter extends
                     selectedProduct.getBrand() + "\nPrice: " + selectedProduct.getPrice() +
                     " \\ each";
             viewHolder.setTextViewText(text);
-            // notifyItemChanged(position);
         }
 
         if (quantities != null &&
-                position < this.storeOwner.product_list.size() && position >= 0) {
+                position < this.quantities.length && position >= 0) {
             viewHolder.setTextEditorValue(quantities[position]);
-            // notifyItemChanged(position);
         }
     }
 
@@ -132,9 +126,7 @@ public class SelectItemsAdapter extends
     }
 
     public int getQuantityAtPosition(final int position) {
-        if (this.quantities != null && position < quantities.length && position >= 0) {
-            return this.quantities[position];
-        }
-        return 0;
+        return (this.quantities != null && position < quantities.length && position >= 0) ?
+                this.quantities[position] : 0;
     }
 }
