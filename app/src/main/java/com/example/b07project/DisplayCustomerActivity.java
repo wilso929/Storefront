@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DisplayCustomerActivity extends AppCompatActivity {
@@ -32,6 +33,12 @@ public class DisplayCustomerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void view_orders(View view){
+        Intent intent = new Intent(this, DisplayCustomerOrdersActivity.class);
+        intent.putExtra(Customer_Key, (Parcelable) this.customer);
+        startActivity(intent);
+    }
+
     public void seeAvailableStores(View view) {
         Intent intent = new Intent(this, SelectStore.class);
         intent.putExtra(Customer_Key, (Parcelable) this.customer);
@@ -45,5 +52,10 @@ public class DisplayCustomerActivity extends AppCompatActivity {
         builder.setMessage(msg);
         builder.setNegativeButton("Close", (dialog, which) -> dialog.cancel());
         builder.show();
+    }
+
+    public void backButton(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

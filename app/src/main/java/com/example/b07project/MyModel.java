@@ -94,7 +94,7 @@ public class MyModel implements Contract.Model{
                                 }
                                 owner.setProduct_list(product_list);
                             }else if(snapshot.getKey().equals("order_list")){
-                                ArrayList<Order> order_list = new ArrayList<>();
+                                ArrayList<Order> order_list = new ArrayList<Order>();
                                 for(DataSnapshot ds : snapshot.getChildren()){
                                     Order order = new Order();
                                     for(DataSnapshot snap : ds.getChildren()){
@@ -128,7 +128,7 @@ public class MyModel implements Contract.Model{
                             if(snapshot.getKey().equals("password")){
                                 customer.setPassword(snapshot.getValue().toString());
                             }else if(snapshot.getKey().equals("order_list")){
-                                ArrayList<Order> order_list = new ArrayList<>();
+                                ArrayList<Order> order_list = new ArrayList<Order>();
                                 for(DataSnapshot ds : snapshot.getChildren()){
                                     Order order = new Order();
                                     for(DataSnapshot snap : ds.getChildren()){

@@ -28,7 +28,7 @@
         android:layout_width="409dp"
         android:layout_height="570dp"
         android:layout_marginTop="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -54,28 +54,32 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/button"
         android:onClick="onStoreSelected"
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="#000000"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/newWhite"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginBottom="12dp"
-        android:onClick="onStoreSelected"
+        android:backgroundTint="@color/button"
+        android:onClick="goBack"
         android:text="CANCEL"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="#000000"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/newWhite"
+        app:strokeWidth="1dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar5"
@@ -89,7 +93,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

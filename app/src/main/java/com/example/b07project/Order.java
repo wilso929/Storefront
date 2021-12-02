@@ -31,6 +31,32 @@ public class Order implements Serializable {
         return sum;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null)
+            return false;
+        if (obj == this)
+            return true;
+        if (obj.getClass() != this.getClass())
+            return false;
+        Order other = (Order)obj;
+        if (!customer.equals(other.customer))
+            return false;
+        if (!owner.equals(other.owner))
+            return false;
+        if (completed != other.completed)
+            return false;
+        for (Product p: this.products){
+            if (!other.products.contains(p))
+                return false;
+        }
+        for (Product p: other.products){
+            if (!this.products.contains(p))
+                return false;
+        }
+        return true;
+    }
+
     @NonNull
     @Override
     public String toString(){

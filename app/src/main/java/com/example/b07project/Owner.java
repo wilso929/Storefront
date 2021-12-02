@@ -132,4 +132,24 @@ public class Owner extends User implements Serializable, Parcelable {
         parcel.writeArray(this.product_list.toArray());
         parcel.writeArray(this.orders.toArray());
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null)
+            return false;
+        if (obj == this)
+            return true;
+        if (obj.getClass() != this.getClass())
+            return false;
+        Owner other = (Owner)obj;
+        if(!other.getUsername().equals(this.getUsername())){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getUsername().hashCode();
+    }
 }

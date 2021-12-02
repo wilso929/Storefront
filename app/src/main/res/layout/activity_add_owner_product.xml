@@ -16,6 +16,7 @@
         android:hint="@string/productname"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textStyle=""
         app:layout_constraintBottom_toTopOf="@+id/BrandName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -56,10 +57,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="348dp"
+        android:backgroundTint="@color/button"
         android:onClick="onClick"
         android:text="@string/CreateProduct"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="262dp"
+        android:onClick="backButton"
+        android:text="@string/BackButton"
+        android:textStyle="bold"
+        android:backgroundTint="@color/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
