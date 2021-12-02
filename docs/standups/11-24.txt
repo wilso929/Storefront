@@ -53,12 +53,13 @@ Any impediments or stumbling blocks?
 - emulator doesnt work
 
 
-Name: Skandan Vecham (did not attend)
+Name: Skandan Vecham 
 
 What have you done since yesterday?
-
+- no update
 
 What are you planning on doing today?
+- user story 8
 
 Any impediments or stumbling blocks?
-
+n/a
