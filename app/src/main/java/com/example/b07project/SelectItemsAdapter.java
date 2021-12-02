@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,52 +20,16 @@ public class SelectItemsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final EditText editText;
+        private MyEditTextListener myEditTextListener;
         private final int position;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, MyEditTextListener myEditTextListener) {
             super(view);
-            this.position = getLayoutPosition();
+            this.position = getAdapterPosition();
             textView = (TextView) view.findViewById(R.id.productDesc);
             editText = (EditText) view.findViewById(R.id.editQuantity);
-            editText.addTextChangedListener(new TextWatcher() {
-                private boolean textChanged;
-                String previousText, currentText;
-
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    this.currentText = charSequence.toString();
-                    this.textChanged = false;
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    this.previousText = this.currentText;
-                    this.currentText = charSequence.toString().replace(
-                            "-", ""); // remove possibility of negative quantities
-
-                    if (!(this.previousText.equals(this.currentText))) {
-                        // attempt to update the quantities array
-                        try {
-                            quantities[position] = Integer.parseInt(this.currentText);
-                            textChanged = true;
-                        } catch (NumberFormatException exception) {
-                            this.currentText = this.previousText;
-                            quantities[position] = 0;
-                        } catch (NullPointerException exception) {
-                            System.out.println("NullPointerException occurred when attempting to " +
-                                    "update quantity. Null Quantities Array");
-                        }
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    if (textChanged) {
-                        textChanged = false;
-                        editText.setText(currentText); // change the text
-                    }
-                }
-            });
+            this.myEditTextListener = myEditTextListener;
+            editText.addTextChangedListener(myEditTextListener);
         }
 
         public void setTextViewText(String newText) {
@@ -73,6 +38,48 @@ public class SelectItemsAdapter extends
 
         public void setTextEditorValue(int quantity) {
             this.editText.setText(String.valueOf(quantity));
+        }
+    }
+
+    private class MyEditTextListener implements TextWatcher{
+        private int position;
+
+        public void updatePosition(int position){
+            this.position = position;
+        }
+
+        private boolean textChanged;
+        String previousText, currentText;
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            this.currentText = charSequence.toString();
+            this.textChanged = false;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            this.previousText = this.currentText;
+            this.currentText = charSequence.toString().replace(
+                    "-", ""); // remove possibility of negative quantities
+
+            if (!(this.previousText.equals(this.currentText))) {
+                // attempt to update the quantities array
+                try {
+                    quantities[position] = Integer.parseInt(this.currentText);
+                    textChanged = true;
+                } catch (NumberFormatException exception) {
+                    this.currentText = this.previousText;
+                    quantities[position] = 0;
+                } catch (NullPointerException exception) {
+                    System.out.println("NullPointerException occurred when attempting to " +
+                            "update quantity. Null Quantities Array");
+                }
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
         }
     }
 
@@ -90,13 +97,14 @@ public class SelectItemsAdapter extends
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.layout_items_products, viewGroup, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, new MyEditTextListener());
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder,
                                  final int position) {
+        viewHolder.myEditTextListener.updatePosition(viewHolder.getAdapterPosition());
         if (this.storeOwner != null &&
                 this.storeOwner.product_list != null &&
                 position < this.storeOwner.product_list.size() && position >= 0) {
