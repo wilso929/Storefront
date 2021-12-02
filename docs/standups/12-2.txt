@@ -1,1 +1,78 @@
+December 2, 2021
 
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- debugging
+
+What are you planning on doing today?
+- continue debugging
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- aesthetic stuff
+- added the name of app
+
+What are you planning on doing today?
+- debug
+- merging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- fixed order quantity for creating orders
+- now sends to firebase
+
+What are you planning on doing today?
+- debug creating order
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Theresa Yu 
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- debug creating order
+- merging
+
+Any impediments or stumbling blocks?
+- emulator
+
+
+Name: Skandan Vecham 
+
+What have you done since yesterday?
+- debugging creating order
+
+What are you planning on doing today?
+- continue debugging
+- help out with merging
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- changed UI 
+
+What are you planning on doing today?
+- debug create orders
+- merging
+
+Any impediments or stumbling blocks?
+n/a
