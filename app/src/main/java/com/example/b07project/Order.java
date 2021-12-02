@@ -62,9 +62,9 @@ public class Order implements Serializable {
     public String toString(){
         String end = "Name: " + customer + "\n";
         if (completed)
-            end += "Completed\n";
+            end += "Completed";
         else
-            end += "Not Completed\n";
+            end += "Not Completed";
         for (Product p: products){
             end += "\n" + p.toString();
         }
