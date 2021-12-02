@@ -16,11 +16,11 @@ public class Order implements Serializable {
 
     }
 
-    public Order(String customer/*, String owner*/, ArrayList<Product> products, boolean completed) {
+    public Order(String customer, String owner, ArrayList<Product> products, boolean completed) {
         this.customer = customer;
         this.products = products;
         this.completed = completed;
-        //this.owner = owner;
+        this.owner = owner;
     }
 
     public double calculate_price(){
