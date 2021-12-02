@@ -33,7 +33,7 @@ public class ExampleUnitTest {
 
         MyPresenter presenter = new MyPresenter(model, view);
 
-        presenter.Check_Account("Cutomers");
+        presenter.Check_Account("Customers");
 
         verify(view).Alert("Invalid", "Username or Password Left Blank");
 
@@ -46,7 +46,7 @@ public class ExampleUnitTest {
 
         MyPresenter presenter = new MyPresenter(model, view);
 
-        presenter.Check_Account("Cutomers");
+        presenter.Check_Account("Customers");
 
         verify(view).Alert("Invalid", "Username or Password Left Blank");
 
@@ -60,7 +60,7 @@ public class ExampleUnitTest {
 
         MyPresenter presenter = new MyPresenter(model, view);
 
-        presenter.Check_Account("Cutomers");
+        presenter.Check_Account("Customers");
 
         verify(view).Alert("Invalid", "Username or Password Left Blank");
 
