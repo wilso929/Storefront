@@ -1,6 +1,6 @@
 package com.example.b07project;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -71,7 +71,7 @@ public class ExampleUnitTest {
         when(view.getUsername()).thenReturn("Test123");
         when(view.getPassword()).thenReturn("Test!@12345");
 
-        Customer customer = new Customer("Test123", "Test!@12345");
+        //Customer customer = new Customer("Test123", "Test!@12345");
 
         MyPresenter presenter = new MyPresenter(model, view);
 
@@ -85,7 +85,7 @@ public class ExampleUnitTest {
     public void Authenticate1() {
         MyPresenter presenter = new MyPresenter(model, view);
 
-        assertEquals(presenter.Authenticate("Test123","Test!@12345"), true);
+        assertTrue(presenter.Authenticate("Test123","Test!@12345"));
 
     }
 
@@ -102,7 +102,7 @@ public class ExampleUnitTest {
                 "a special character, " +
                 "and not other character types.");
 
-        assertEquals(value, false);
+        assertFalse(value);
 
     }
 
@@ -114,7 +114,7 @@ public class ExampleUnitTest {
 
         verify(view).Alert("Invalid Username", "Usernames must be at least 7 characters long");
 
-        assertEquals(value, false);
+        assertFalse(value);
 
     }
 
