@@ -114,7 +114,14 @@ public class MyModel implements Contract.Model{
                                             ArrayList<Product> product_list = new ArrayList<Product>();
                                             for(DataSnapshot p : snap.getChildren()){
                                                 Product product = p.getValue(Product.class);
-                                                product_list.add(product);
+                                                if(p.child("quantity").exists()){
+                                                    int i = p.child("quantity").getValue(Integer.class);
+                                                    for(int j = 0; j < i; j++){
+                                                        product_list.add(product);
+                                                    }
+                                                } else{
+                                                    product_list.add(product);
+                                                }
                                             }
                                             order.setProducts(product_list);
                                         }
@@ -148,7 +155,14 @@ public class MyModel implements Contract.Model{
                                             ArrayList<Product> product_list = new ArrayList<Product>();
                                             for(DataSnapshot p : snap.getChildren()){
                                                 Product product = p.getValue(Product.class);
-                                                product_list.add(product);
+                                                if(p.child("quantity").exists()){
+                                                    int i = p.child("quantity").getValue(Integer.class);
+                                                    for(int j = 0; j < i; j++){
+                                                        product_list.add(product);
+                                                    }
+                                                } else{
+                                                    product_list.add(product);
+                                                }
                                             }
                                             order.setProducts(product_list);
                                         }
@@ -214,9 +228,16 @@ public class MyModel implements Contract.Model{
                                         } else if (snap.getKey().equals("product_list")) {
                                             ArrayList<Product> product_list = new ArrayList<Product>();
 
-                                            for (DataSnapshot p : snap.getChildren()) {
+                                            for(DataSnapshot p : snap.getChildren()){
                                                 Product product = p.getValue(Product.class);
-                                                product_list.add(product);
+                                                if(p.child("quantity").exists()){
+                                                    int i = p.child("quantity").getValue(Integer.class);
+                                                    for(int j = 0; j < i; j++){
+                                                        product_list.add(product);
+                                                    }
+                                                } else{
+                                                    product_list.add(product);
+                                                }
                                             }
                                             order.setProducts(product_list);
                                         }
