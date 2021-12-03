@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AddOwnerProductActivity extends AppCompatActivity {
@@ -42,6 +43,7 @@ public class AddOwnerProductActivity extends AppCompatActivity {
                 Alert("Error", "Product already exists.");
             }else{
                 //add product to owners product list and database
+
                 owner.getProduct_list().add(new_prod);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -49,8 +51,15 @@ public class AddOwnerProductActivity extends AppCompatActivity {
 
                 myRef.child("Owners").child(owner.getUsername()).child("product_list").child(name).setValue(new_prod);
                 displayAlert();
+
+                Intent intent = new Intent(this, DisplayOwnerActivity.class);
+                intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) owner);
+                startActivity(intent);
+
+
             }
         }
+
     }
 
     public void displayAlert(){
@@ -65,16 +74,15 @@ public class AddOwnerProductActivity extends AppCompatActivity {
 
     public void sendHome(){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(DisplayOwnerActivity.Owner_Key, owner);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) owner);
         startActivity(intent);
     }
 
     public void backButton(View view){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(DisplayOwnerActivity.Owner_Key, this.owner);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) this.owner);
         startActivity(intent);
     }
-
 
     public String getProdName(){
         EditText text = findViewById(R.id.ProductName);

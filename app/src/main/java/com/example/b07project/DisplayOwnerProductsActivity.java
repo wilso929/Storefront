@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DisplayOwnerProductsActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class DisplayOwnerProductsActivity extends AppCompatActivity {
 
     public void backButton(View view){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(DisplayOwnerActivity.Owner_Key, this.owner);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) this.owner);
         startActivity(intent);
     }
 

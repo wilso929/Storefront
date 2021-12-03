@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.jar.Attributes;
+// import java.util.jar.Attributes;
 
 public class Order implements Serializable {
     String customer;
-    ArrayList<Product> products = new ArrayList<Product>();
+    ArrayList<Product> products = new ArrayList<>();
     String owner;
     boolean completed;
 
@@ -23,13 +23,7 @@ public class Order implements Serializable {
         this.owner = owner;
     }
 
-    public double calculate_price(){
-        double sum = 0;
-        for (Product p: products){
-            sum += p.price;
-        }
-        return sum;
-    }
+
 
     @Override
     public boolean equals(Object obj){
@@ -60,7 +54,7 @@ public class Order implements Serializable {
     @NonNull
     @Override
     public String toString(){
-        String end = "Customer Name: " + customer + "\n";
+        String end = "Customer Name: " + customer + "\nStore Name: " + owner +"\n";
         if (completed)
             end += "Completed";
         else

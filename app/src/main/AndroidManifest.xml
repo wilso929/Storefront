@@ -31,6 +31,14 @@
             android:exported="false"
             android:parentActivityName=".OwnerLogin" />
         <activity
+            android:name=".DisplayCustomerActivity"
+            android:exported="false"
+            android:parentActivityName=".CustomerLogin" />
+        <activity
+            android:name=".DisplayCustomerOrdersActivity"
+            android:exported="false"
+            android:parentActivityName=".DisplayCustomerActivity"/>
+        <activity
             android:name=".CreateAccount"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
@@ -38,6 +46,14 @@
             android:name=".CustomerLogin"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SelectStore"
+            android:exported="false"
+            android:parentActivityName=".DisplayCustomerActivity" />
+        <activity
+            android:name=".SelectItems"
+            android:exported="false"
+            android:parentActivityName=".SelectStore" />
         <activity
             android:name=".OwnerLogin"
             android:exported="false"

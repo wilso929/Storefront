@@ -1,6 +1,8 @@
 package com.example.b07project;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 
@@ -42,8 +44,14 @@ public class CustomerLogin extends AppCompatActivity implements Contract.View {
         builder.show();
     }
 
-    public void NextPage(User user, String type){
+    /*public void NextPage(User user, String type){
         Alert("Yay", "You did it");
+    }*/
+
+    public void NextPage(User user, String type){
+        Intent intent = new Intent(this, DisplayCustomerActivity.class);
+        intent.putExtra(DisplayCustomerActivity.Customer_Key, (Parcelable) user);
+        startActivity(intent);
     }
 
 }

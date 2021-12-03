@@ -8,6 +8,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 public class OwnerLogin extends AppCompatActivity implements Contract.View{
     private Contract.Presenter presenter;
     public static final String USERNAME = "com.example.myfirstapp.MESSAGE";
@@ -48,7 +50,7 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
 
     public void NextPage(User user, String type){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(DisplayOwnerActivity.Owner_Key, user);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) user);
         startActivity(intent);
     }
 

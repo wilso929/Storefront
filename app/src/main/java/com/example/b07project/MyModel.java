@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MyModel implements Contract.Model{
 
@@ -159,6 +160,78 @@ public class MyModel implements Contract.Model{
                         }
                         presenter.Vaildlogin(customer, type);
                     }
+                }
+            }
+        });
+    }
+
+    public void Get_Owners(SelectStore c, Contract.Other other){
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Owners");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("demo", "Error getting data", task.getException());
+
+                } else {
+                    ArrayList<Owner> updated = new ArrayList<Owner>();
+                    for (DataSnapshot big_snapshot : task.getResult().getChildren()) {
+                        Owner owner = new Owner();
+
+                        for (DataSnapshot snapshot : big_snapshot.getChildren()) {
+                            if (snapshot.getKey().equals("username")) {
+                                owner.setUsername((snapshot.getValue().toString()));
+
+                            } else if (snapshot.getKey().equals("password")) {
+                                owner.setPassword(snapshot.getValue().toString());
+
+                            } else if (snapshot.getKey().equals("product_list")) {
+                                ArrayList<Product> product_list = new ArrayList<Product>();
+
+                                for (DataSnapshot small_snapshot : snapshot.getChildren()) {
+                                    Product product = small_snapshot.getValue(Product.class);
+                                    product_list.add(product);
+                                }
+                                owner.setProduct_list(product_list);
+
+                            } else if (snapshot.getKey().equals("order_list")) {
+                                ArrayList<Order> order_list = new ArrayList<>();
+
+                                for (DataSnapshot small_snapshot : snapshot.getChildren()) {
+                                    Order order = new Order();
+
+                                    for (DataSnapshot snap : small_snapshot.getChildren()) {
+                                        if (snap.getKey().equals("customer")) {
+                                            order.setCustomer(snap.getValue().toString());
+
+                                        } else if (snap.getKey().equals("owner")) {
+                                            order.setOwner(snap.getValue().toString());
+
+                                        } else if (snap.getKey().equals("completed")) {
+                                            order.setCompleted(Boolean.parseBoolean(snap.getValue().toString()));
+
+                                        } else if (snap.getKey().equals("product_list")) {
+                                            ArrayList<Product> product_list = new ArrayList<Product>();
+
+                                            for (DataSnapshot p : snap.getChildren()) {
+                                                Product product = p.getValue(Product.class);
+                                                product_list.add(product);
+                                            }
+                                            order.setProducts(product_list);
+                                        }
+                                    }
+                                    order_list.add(order);
+                                }
+                                owner.setOrders(order_list);
+
+                            } else if (snapshot.getKey().equals("store_name")) {
+                                owner.setStore_name(snapshot.getValue().toString());
+                            }
+                        }
+                        updated.add(owner);
+                    }
+                    other.Give_Owners(c, updated);
                 }
             }
         });

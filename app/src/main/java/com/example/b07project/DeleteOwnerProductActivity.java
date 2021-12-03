@@ -1,8 +1,5 @@
 package com.example.b07project;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +7,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DeleteOwnerProductActivity extends AppCompatActivity {
@@ -89,13 +90,13 @@ public class DeleteOwnerProductActivity extends AppCompatActivity {
 
     public void sendHome(){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(DisplayOwnerActivity.Owner_Key, owner);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) owner);
         startActivity(intent);
     }
 
     public void backButton(View view){
         Intent intent = new Intent(this, DisplayOwnerActivity.class);
-        intent.putExtra(DisplayOwnerActivity.Owner_Key, this.owner);
+        intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) this.owner);
         startActivity(intent);
     }
 
