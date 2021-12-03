@@ -63,6 +63,7 @@ public class DisplayOwnerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void Alert(String title, String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplayOwnerActivity.this);
         builder.setCancelable(true);

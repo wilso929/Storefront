@@ -47,13 +47,14 @@ Any impediments or stumbling blocks?
 N/a
 
 
-Name: Skandan Vecham (did not attend)
+Name: Skandan Vecham 
 
 What have you done since yesterday?
-N/a
+- no update
 
 What are you planning on doing today?
-N/a
+- user story 8
+
 Any impediments or stumbling blocks?
 N/a
 

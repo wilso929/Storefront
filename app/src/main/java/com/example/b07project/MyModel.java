@@ -59,8 +59,15 @@ public class MyModel implements Contract.Model{
                     presenter.Create_Failed();
                 }else{
                     myRef.child(type).child(user.getUsername()).setValue(user);
-                    GenerateUser(user.getUsername(), type, presenter);
+                    if(type.equals("Owners")){
+                        Owner owner = (Owner) user;
+                        presenter.Vaildlogin(owner, type);
+                    }else{
+                        Customer customer = (Customer) user;
+                        presenter.Vaildlogin(customer, type);
+                    }
                 }
+
                 myRef.child(type).removeEventListener(this);
             }
             @Override
@@ -69,7 +76,6 @@ public class MyModel implements Contract.Model{
             }
         });
     }
-
 
     public static void GenerateUser(String username, String type, Contract.Presenter presenter){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(type);
@@ -108,7 +114,14 @@ public class MyModel implements Contract.Model{
                                             ArrayList<Product> product_list = new ArrayList<Product>();
                                             for(DataSnapshot p : snap.getChildren()){
                                                 Product product = p.getValue(Product.class);
-                                                product_list.add(product);
+                                                if(p.child("quantity").exists()){
+                                                    int i = p.child("quantity").getValue(Integer.class);
+                                                    for(int j = 0; j < i; j++){
+                                                        product_list.add(product);
+                                                    }
+                                                } else{
+                                                    product_list.add(product);
+                                                }
                                             }
                                             order.setProducts(product_list);
                                         }
@@ -142,7 +155,14 @@ public class MyModel implements Contract.Model{
                                             ArrayList<Product> product_list = new ArrayList<Product>();
                                             for(DataSnapshot p : snap.getChildren()){
                                                 Product product = p.getValue(Product.class);
-                                                product_list.add(product);
+                                                if(p.child("quantity").exists()){
+                                                    int i = p.child("quantity").getValue(Integer.class);
+                                                    for(int j = 0; j < i; j++){
+                                                        product_list.add(product);
+                                                    }
+                                                } else{
+                                                    product_list.add(product);
+                                                }
                                             }
                                             order.setProducts(product_list);
                                         }
@@ -208,9 +228,16 @@ public class MyModel implements Contract.Model{
                                         } else if (snap.getKey().equals("product_list")) {
                                             ArrayList<Product> product_list = new ArrayList<Product>();
 
-                                            for (DataSnapshot p : snap.getChildren()) {
+                                            for(DataSnapshot p : snap.getChildren()){
                                                 Product product = p.getValue(Product.class);
-                                                product_list.add(product);
+                                                if(p.child("quantity").exists()){
+                                                    int i = p.child("quantity").getValue(Integer.class);
+                                                    for(int j = 0; j < i; j++){
+                                                        product_list.add(product);
+                                                    }
+                                                } else{
+                                                    product_list.add(product);
+                                                }
                                             }
                                             order.setProducts(product_list);
                                         }

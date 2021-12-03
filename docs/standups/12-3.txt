@@ -1,12 +1,14 @@
-November 29, 2021
+December 3, 2021
 
 Name: Aydin Parekh
 
 What have you done since yesterday?
-- owner side user stories completed
+- debugging
+- merged the branches
 
 What are you planning on doing today?
-- dedicated back button
+- test
+- delete products from everyones order lists
 
 Any impediments or stumbling blocks?
 N/a
@@ -15,10 +17,10 @@ N/a
 Name: Ben Wilson
 
 What have you done since yesterday?
-- finished up testing presenter
+- no update
 
 What are you planning on doing today?
-- debugging
+- help out on delete product
 
 Any impediments or stumbling blocks?
 n/a
@@ -27,46 +29,47 @@ n/a
 Name: Cindy Ji
 
 What have you done since yesterday?
-- retrieve store names
+- debugging
+- merged branch with Howie's
 
 What are you planning on doing today?
-- discuss with Howie on user story 6
+- fix nullpointer exceptions
 
 Any impediments or stumbling blocks?
 n/a
 
 
-Name: Theresa Yu (did not attend)
+Name: Theresa Yu 
 
 What have you done since yesterday?
-
+- fixed selectItems to write to firebase
 
 What are you planning on doing today?
-
+- test
 
 Any impediments or stumbling blocks?
-
+- emulator
 
 
 Name: Skandan Vecham 
 
 What have you done since yesterday?
-- customer user interface
+- no update
 
 What are you planning on doing today?
-- planning out creating orders
+- test
 
 Any impediments or stumbling blocks?
 n/a
 
+
 Name: Howie Chen
 
 What have you done since yesterday?
-- retrived stores and products, and displayed
-- set up customer login
+- no update
 
 What are you planning on doing today?
-- getting product display working
+- test
 
 Any impediments or stumbling blocks?
 n/a

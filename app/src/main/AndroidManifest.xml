@@ -21,7 +21,7 @@
         <activity
             android:name=".DisplayOwnerOrdersActivity"
             android:exported="false"
-            android:parentActivityName=".DisplayOwnerActivity"/>
+            android:parentActivityName=".DisplayOwnerActivity" />
         <activity
             android:name=".DisplayOwnerProductsActivity"
             android:exported="false"

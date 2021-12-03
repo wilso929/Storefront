@@ -30,4 +30,20 @@ public abstract class User implements Serializable {
         this.username = username;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+        if(getClass() != obj.getClass()) {
+            return false;
+        }
+        User other = (User) obj;
+        if(other.getUsername().equals(this.username)) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

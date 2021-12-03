@@ -13,6 +13,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * Allows customer to select items from a store to make an order
@@ -71,13 +77,13 @@ public class SelectItems extends AppCompatActivity {
                 i++;
             }
 
-            Order order = new Order(customer.getUsername(), selectedOwner.getUsername(), orderItems, false);
+            Date date = Calendar.getInstance(TimeZone.getTimeZone("America/Toronto")).getTime();
+            Order order = new Order(customer.getUsername(), selectedOwner.getUsername(),
+                    orderItems, false);
             customer.add_order(order); // update the customer's order list
             selectedOwner.addOrder(order); // update the store owner's order list
-            this.updateFirebase(true, this.customer, this.selectedOwner,
-                    order); // updates Owner
-            this.updateFirebase(false, this.customer, this.selectedOwner,
-                    order); // updates Customer
+            this.updateFirebase(true, order, date); // update Owner
+            this.updateFirebase(false, order, date); // update Customer
         }
         goBack(view); // return customer back to the main menu
     }
@@ -101,29 +107,36 @@ public class SelectItems extends AppCompatActivity {
     /**
      * A method that updates a user's firebase data once an order is made
      *
-     * @param userTypeOwner Enter true if you want to update the owner, false if you want to update
-     *                      the customer
-     * @param customer The customer that made the order
-     * @param owner The owner that the customer made the order to
+     * @param updateOwner The value of this is true if you want to update the owner,
+     *                    false if you want to update the customer.
      * @param order the order that the customer made
+     * @param date the date and time that the order was made
      */
-    private void updateFirebase(final boolean userTypeOwner, Customer customer, Owner owner,
-                                Order order) {
-        if (customer != null && owner != null && order != null) {
-            final String userType = userTypeOwner ? "Owners" : "Customers";
-            final String orderListUserName = userTypeOwner ? customer.getUsername() :
-                    owner.getUsername();
-            final String primaryUserName = userTypeOwner ? owner.getUsername() :
+    private void updateFirebase(final boolean updateOwner, Order order, Date date) {
+        if (adapter != null && customer != null && selectedOwner != null && order != null &&
+                date != null && selectedOwner.getProduct_list() != null) {
+            final String userType = updateOwner ? "Owners" : "Customers";
+            final String primaryUserName = updateOwner ? selectedOwner.getUsername() :
                     customer.getUsername();
-            ArrayList<Product> products = order.getProducts();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss",
+                    Locale.CANADA);
+            final String orderName = selectedOwner.getStore_name() + " | "  +
+                    dateFormat.format(date) + " | From: " + customer.getUsername();
+            ArrayList<Product> products = selectedOwner.getProduct_list();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference().child(userType).child(
-                    primaryUserName).child("order_list").child(orderListUserName);
-            myRef.child("Customer").setValue(order.getCustomer());
-            myRef.child("Completed").setValue(order.isCompleted());
+                    primaryUserName).child("order_list").child(orderName);
+            myRef.child("customer").setValue(customer.getUsername());
+            myRef.child("owner").setValue(selectedOwner.getUsername());
+            myRef.child("completed").setValue(order.isCompleted());
 
-            for (Product product : products) {
-                myRef.child("product_list").child(product.getName()).setValue(product);
+            for (int i = 0; i < products.size(); i++) {
+                if (this.adapter.getQuantityAtPosition(i) != 0) {
+                    myRef.child("product_list").child(products.get(i).getName()).setValue(
+                            products.get(i));
+                    myRef.child("product_list").child(products.get(i).getName()).child(
+                            "quantity").setValue(this.adapter.getQuantityAtPosition(i));
+                }
             }
         }
     }
