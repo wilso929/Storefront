@@ -2,6 +2,8 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class DeleteOwnerProductActivity extends AppCompatActivity {
 
@@ -75,56 +80,84 @@ public class DeleteOwnerProductActivity extends AppCompatActivity {
                     DatabaseReference myRef = database.getReference();
 
                     myRef.child("Owners").child(owner.getUsername()).child("product_list").child(p.name).removeValue();
+                    for (Iterator<Order> iterator = owner.orders.iterator(); iterator.hasNext(); ) {
+                        Order del = iterator.next();
+                        if (del.equals(p)) {
+                            iterator.remove();
+                        }
+                    }
 
+                    myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (!task.isSuccessful()) {
+                                Log.e("demo", "Error getting data", task.getException());
+
+                            } else {
+                                for (DataSnapshot big_snapshot : task.getResult().getChildren()) {
+                                    if (big_snapshot.getKey().equals("Customers")) {
+                                        for (DataSnapshot snapshot : big_snapshot.getChildren()) {
+                                            String customer_key = snapshot.getKey();
+                                            for (DataSnapshot small_snapshot : snapshot.getChildren()) {
+                                                if (small_snapshot.getKey().equals("order_list")) {
+                                                    for (DataSnapshot tiny_snapshot : small_snapshot.getChildren()) {
+                                                        if (tiny_snapshot.getKey().contains(owner.store_name)) {
+                                                            String order_key = tiny_snapshot.getKey();
+                                                            myRef.child("Customers").child(customer_key)
+                                                                    .child("order_list").child(order_key)
+                                                                    .child("product_list").child(p.name).removeValue();
+                                                            for (DataSnapshot snp : tiny_snapshot.getChildren()) {
+                                                                boolean del = true;
+                                                                if (snp.getKey().equals("product_list")) {
+                                                                    del = false;
+                                                                }
+                                                                if (del) {
+                                                                    myRef.child("Customers").child(customer_key)
+                                                                            .child("order_list").child(order_key).removeValue();
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else if (big_snapshot.getKey().equals("Owners")) {
+                                        for (DataSnapshot snapshot : big_snapshot.getChildren()) {
+                                            if (snapshot.getKey().equals(owner.getUsername())) {
+                                                for (DataSnapshot small_snapshot : snapshot.getChildren()) {
+                                                    if (small_snapshot.getKey().equals("order_list")) {
+                                                        for (DataSnapshot tiny_snapshot : small_snapshot.getChildren()) {
+                                                            if (tiny_snapshot.getKey().contains(owner.store_name)) {
+                                                                String order_key = tiny_snapshot.getKey();
+                                                                myRef.child("Owners").child(owner.getUsername())
+                                                                        .child("order_list").child(order_key)
+                                                                        .child("product_list").child(p.name).removeValue();
+                                                                for (DataSnapshot snp : tiny_snapshot.getChildren()) {
+                                                                    boolean del = true;
+                                                                    if (snp.getKey().equals("product_list")) {
+                                                                        del = false;
+                                                                    }
+                                                                    if (del) {
+                                                                        myRef.child("Owners").child(owner.getUsername())
+                                                                                .child("order_list").child(order_key).removeValue();
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
                     displayAlert("Product Deleted");
                 }
             });
         }
-    }
-
-    public void deleteProduct(Product delete_prod){
-        owner.getProduct_list().remove(delete_prod);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-
-        myRef.child("Owners").child(owner.getUsername()).child("product_list").child(delete_prod.name).removeValue();
-
-        //loop through all of the owners orders
-        for (Order o: owner.orders){
-            for (Product p: o.products){
-                if (p.equals(delete_prod)){
-                    o.products.remove(p);
-                }
-            }
-        }
-
-        //
-
-
-        //go through each product in each order in each customer
-        myRef.child("Customers").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds_customers: snapshot.getChildren()){
-                    for (DataSnapshot ds_customerfields: ds_customers.getChildren()){
-                        for (DataSnapshot ds_orders: ds_customerfields.child("order_list").getChildren()){
-                            for (DataSnapshot ds_products: ds_orders.child("product_list").getChildren()){
-                                Product comp = ds_products.getValue(Product.class);
-                                if (delete_prod.equals(comp))
-                                    ds_products.getRef().removeValue();
-                            }
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
-        });
-
-
-
     }
 
     public void displayAlert(String title){

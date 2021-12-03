@@ -2,6 +2,7 @@ package com.example.b07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,14 +10,19 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class OwnerCompleteOrderActivity extends AppCompatActivity {
 
@@ -118,11 +124,51 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference();
 
-                        //set the order of owner to completed
-                        //set the order of customer to completed
-                        myRef.child("Owners").child(owner.getUsername()).child("order_list").child(final_order.getCustomer()).child("completed").setValue(true);
-                        myRef.child("Customers").child(final_order.getCustomer()).child("order_list").child(owner.getUsername()).child("completed").setValue(true);
+                        myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if (!task.isSuccessful()) {
+                                    Log.e("demo", "Error getting data", task.getException());
+
+                                } else {
+                                    for (DataSnapshot big_snapshot : task.getResult().getChildren()) {
+                                        if (big_snapshot.getKey().equals("Customers")) {
+                                            for (DataSnapshot snapshot : big_snapshot.getChildren()) {
+                                                String customer_key = snapshot.getKey();
+                                                for (DataSnapshot small_snapshot : snapshot.getChildren()) {
+                                                    if (small_snapshot.getKey().equals("order_list")) {
+                                                        for (DataSnapshot tiny_snapshot : small_snapshot.getChildren()) {
+                                                            if (tiny_snapshot.getKey().contains(owner.store_name) && tiny_snapshot.getKey().contains(final_order.getCustomer())) {
+                                                                String order_key = tiny_snapshot.getKey();
+                                                                myRef.child("Customers").child(customer_key)
+                                                                        .child("order_list").child(order_key)
+                                                                        .child("completed").setValue("true");
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else if (big_snapshot.getKey().equals("Owners")) {
+                                            for (DataSnapshot snapshot : big_snapshot.getChildren()) {
+                                                if (snapshot.getKey().equals(owner.getUsername())) {
+                                                    for (DataSnapshot small_snapshot : snapshot.getChildren()) {
+                                                        if (small_snapshot.getKey().equals("order_list")) {
+                                                            for (DataSnapshot tiny_snapshot : small_snapshot.getChildren()) {
+                                                                String order_key = tiny_snapshot.getKey();
+                                                                myRef.child("Owners").child(owner.getUsername())
+                                                                        .child("order_list").child(order_key)
+                                                                        .child("completed").setValue("true");
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
                         displayAlert("Order Completed");
                     }
                 }
