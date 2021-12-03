@@ -126,16 +126,16 @@ public class SelectItems extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference().child(userType).child(
                     primaryUserName).child("order_list").child(orderName);
-            myRef.child("Customer").setValue(customer.getUsername());
-            myRef.child("Owner").setValue(selectedOwner.getUsername());
-            myRef.child("Completed").setValue(order.isCompleted());
+            myRef.child("customer").setValue(customer.getUsername());
+            myRef.child("owner").setValue(selectedOwner.getUsername());
+            myRef.child("completed").setValue(order.isCompleted());
 
             for (int i = 0; i < products.size(); i++) {
                 if (this.adapter.getQuantityAtPosition(i) != 0) {
                     myRef.child("product_list").child(products.get(i).getName()).setValue(
                             products.get(i));
                     myRef.child("product_list").child(products.get(i).getName()).child(
-                            "Quantity").setValue(this.adapter.getQuantityAtPosition(i));
+                            "quantity").setValue(this.adapter.getQuantityAtPosition(i));
                 }
             }
         }
