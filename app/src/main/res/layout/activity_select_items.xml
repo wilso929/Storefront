@@ -12,17 +12,21 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Make An Order" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/storeInventoryRV"
-        android:layout_width="match_parent"
-        android:layout_height="590dp"
+        android:layout_width="411dp"
+        android:layout_height="435dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        tools:itemCount="1024"/>
+        tools:itemCount="1024" />
 
     <Button
         android:id="@+id/button8"

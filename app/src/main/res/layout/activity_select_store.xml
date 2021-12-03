@@ -10,6 +10,8 @@
         android:id="@+id/toolbar"
         android:layout_width="413dp"
         android:layout_height="80dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="11dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -19,18 +21,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:title="Select a Store"
         tools:visibility="visible" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="409dp"
-        android:layout_height="570dp"
-        android:layout_marginTop="150dp"
+        android:layout_width="410dp"
+        android:layout_height="496dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toTopOf="@+id/toolbar5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,8 +41,8 @@
 
             <RadioGroup
                 android:id="@+id/RadioGroup1"
-                android:layout_width="403dp"
-                android:layout_height="600dp"
+                android:layout_width="match_parent"
+                android:layout_height="532dp"
 
                 >
 
