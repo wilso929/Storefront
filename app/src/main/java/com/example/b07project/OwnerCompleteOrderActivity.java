@@ -52,6 +52,9 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
 
             spinner.setAdapter(adapter);
 
+            TextView tv = findViewById(R.id.textView_displayorder);
+            tv.setText("No Orders");
+
             Button button = (Button)findViewById(R.id.completeorderbutton);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
