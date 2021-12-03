@@ -38,14 +38,15 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/B07Project-master/app/src/main/res/layout/activity_select_store.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_owner_product.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_customer_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_display_customer_stores.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_display_customer_orders.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_display_customer_stores.xml" value="0.13" />
         <entry key="app/src/main/res/layout/activity_display_owner.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/activity_display_owner_orders.xml" value="0.2876464120382617" />
+        <entry key="app/src/main/res/layout/activity_display_owner_orders.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_display_owner_products.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_no_store.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_owner_login.xml" value="0.17529198440567154" />
-        <entry key="app/src/main/res/layout/activity_select_items.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_select_store.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_select_items.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_select_store.xml" value="0.21" />
         <entry key="app/src/main/res/layout/layout_items_products.xml" value="0.33" />
       </map>
     </option>
