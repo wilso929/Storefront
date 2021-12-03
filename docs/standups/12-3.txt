@@ -1,1 +1,75 @@
+December 3, 2021
 
+Name: Aydin Parekh
+
+What have you done since yesterday?
+- debugging
+- merged the branches
+
+What are you planning on doing today?
+- test
+- delete products from everyones order lists
+
+Any impediments or stumbling blocks?
+N/a
+
+
+Name: Ben Wilson
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- help out on delete product
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Cindy Ji
+
+What have you done since yesterday?
+- debugging
+- merged branch with Howie's
+
+What are you planning on doing today?
+- fix nullpointer exceptions
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Theresa Yu 
+
+What have you done since yesterday?
+- fixed selectItems to write to firebase
+
+What are you planning on doing today?
+- test
+
+Any impediments or stumbling blocks?
+- emulator
+
+
+Name: Skandan Vecham 
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- test
+
+Any impediments or stumbling blocks?
+n/a
+
+
+Name: Howie Chen
+
+What have you done since yesterday?
+- no update
+
+What are you planning on doing today?
+- test
+
+Any impediments or stumbling blocks?
+n/a
