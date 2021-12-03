@@ -16,20 +16,14 @@ public class Order implements Serializable {
 
     }
 
-    public Order(String customer/*, String owner*/, ArrayList<Product> products, boolean completed) {
+    public Order(String customer, String owner, ArrayList<Product> products, boolean completed) {
         this.customer = customer;
         this.products = products;
         this.completed = completed;
-        //this.owner = owner;
+        this.owner = owner;
     }
 
-    public double calculate_price(){
-        double sum = 0;
-        for (Product p: products){
-            sum += p.price;
-        }
-        return sum;
-    }
+
 
     @Override
     public boolean equals(Object obj){
@@ -60,7 +54,7 @@ public class Order implements Serializable {
     @NonNull
     @Override
     public String toString(){
-        String end = "Name: " + customer + "\n";
+        String end = "Customer Name: " + customer + "\nStore Name: " + owner +"\n";
         if (completed)
             end += "Completed";
         else

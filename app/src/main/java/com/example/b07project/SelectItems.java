@@ -71,7 +71,7 @@ public class SelectItems extends AppCompatActivity {
                 i++;
             }
 
-            Order order = new Order(customer.getUsername(), orderItems, false);
+            Order order = new Order(customer.getUsername(), selectedOwner.getUsername(), orderItems, false);
             customer.add_order(order); // update the customer's order list
             selectedOwner.addOrder(order); // update the store owner's order list
             this.updateFirebase(true, this.customer, this.selectedOwner,
