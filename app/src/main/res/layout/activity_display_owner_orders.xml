@@ -25,10 +25,11 @@
 
     <ListView
         android:id="@+id/listview_ownerproducts"
-        android:layout_width="405dp"
-        android:layout_height="394dp"
+        android:layout_width="412dp"
+        android:layout_height="475dp"
         android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,5 +48,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listview_ownerproducts"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.813" />
 </androidx.constraintlayout.widget.ConstraintLayout>

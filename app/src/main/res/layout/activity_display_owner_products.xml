@@ -25,8 +25,8 @@
 
     <ListView
         android:id="@+id/listview_ownerproducts"
-        android:layout_width="410dp"
-        android:layout_height="390dp"
+        android:layout_width="412dp"
+        android:layout_height="475dp"
         android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
