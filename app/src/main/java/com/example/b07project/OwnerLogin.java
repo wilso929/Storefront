@@ -19,7 +19,7 @@ public class OwnerLogin extends AppCompatActivity implements Contract.View{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_login);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         presenter = new MyPresenter(new MyModel(), this);
     }

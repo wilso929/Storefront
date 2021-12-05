@@ -23,7 +23,7 @@ public class DisplayCustomerActivity extends AppCompatActivity {
             this.customer = (Customer) intentExtras.getParcelable(Customer_Key);
         }
         setContentView(R.layout.activity_customer_home);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
     // user story 7, 8

@@ -14,7 +14,7 @@ public class CreateAccount extends AppCompatActivity implements Contract.View{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         presenter = new MyPresenter(new MyModel(), this);
     }

@@ -34,6 +34,7 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_complete_order);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         Intent intent = getIntent();
@@ -68,9 +69,6 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
 
             ArrayList<Order> orders = owner.getOrders();
 
-            //ArrayAdapter<Order> adapter = new ArrayAdapter<Order>(this, android.R.layout.simple_spinner_dropdown_item, orders);
-            //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
             ArrayList<String> order_strings = new ArrayList<>();
             for (Order o: orders){
                 String s = o.customer + " | ";
@@ -90,8 +88,6 @@ public class OwnerCompleteOrderActivity extends AppCompatActivity {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                    //Order order = (Order) spinner.getSelectedItem();
                     Order order = orders.get(position);
                     final_order = order;
                     TextView tv = findViewById(R.id.textView_displayorder);

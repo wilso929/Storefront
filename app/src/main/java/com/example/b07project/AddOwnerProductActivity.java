@@ -22,7 +22,6 @@ public class AddOwnerProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_owner_product);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         if(intent.getExtras() !=null) {
@@ -55,8 +54,6 @@ public class AddOwnerProductActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, DisplayOwnerActivity.class);
                 intent.putExtra(DisplayOwnerActivity.Owner_Key, (Serializable) owner);
                 startActivity(intent);
-
-
             }
         }
 

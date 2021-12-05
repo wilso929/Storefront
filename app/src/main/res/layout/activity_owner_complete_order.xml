@@ -12,28 +12,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginEnd="163dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginBottom="85dp"
         android:backgroundTint="@color/button"
         android:onClick="backButton"
         android:text="@string/BackButton"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/completeorderbutton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <Button
         android:id="@+id/completeorderbutton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="120dp"
-        android:backgroundTint="@color/button"
 
+        android:backgroundTint="@color/button"
         android:text="@string/completeorder_button"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +43,8 @@
 
     <Spinner
         android:id="@+id/SpinnerOrders"
-        android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_width="355dp"
+        android:layout_height="150dp"
         android:layout_marginTop="85dp"
         android:dropDownWidth="wrap_content"
         android:dropDownHeight="wrap_content"
@@ -74,13 +76,13 @@
     <TextView
         android:id="@+id/textView_displayorder"
         android:layout_width="wrap_content"
-        android:layout_height="156dp"
+        android:layout_height="200dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="56dp"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SpinnerOrders" />
 </androidx.constraintlayout.widget.ConstraintLayout>

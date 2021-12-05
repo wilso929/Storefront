@@ -31,8 +31,9 @@ public class SelectStore extends AppCompatActivity {
         this.allOwners = new ArrayList<>();
         this.other.Update_Owners(this);
 
-        setContentView(R.layout.activity_no_store);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (allOwners.isEmpty())
+            setContentView(R.layout.activity_no_store);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
     /**
@@ -46,7 +47,7 @@ public class SelectStore extends AppCompatActivity {
 
         if (allOwners == null || allOwners.isEmpty()) {
             setContentView(R.layout.activity_no_store);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         } else {
             for (Owner owner : allOwners) {
                 button = new RadioButton(this);

@@ -32,6 +32,7 @@ public class SelectItems extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_items);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         // Lookup the recyclerview in activity layout
         RecyclerView recyclerView =
                 (RecyclerView) findViewById(R.id.storeInventoryRV);
