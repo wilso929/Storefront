@@ -121,7 +121,7 @@ public class Owner extends User implements Serializable, Parcelable {
 
     @Override // from implementing Parcelable
     public int describeContents() {
-        return 0; // return number of fields this class has
+        return 0;
     }
 
     @Override // from implementing Parcelable

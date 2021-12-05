@@ -122,7 +122,7 @@ public class SelectItems extends AppCompatActivity {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss",
                     Locale.CANADA);
             final String orderName = selectedOwner.getStore_name() + " | "  +
-                    dateFormat.format(date) + " | From: " + customer.getUsername();
+                    customer.getUsername() + ", " + dateFormat.format(date);
             ArrayList<Product> products = selectedOwner.getProduct_list();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference().child(userType).child(
