@@ -1,0 +1,21 @@
+Aydin Parekh
+- user stories 2-4 (owner interface)
+- owner - delete product
+
+Ben Wilson
+- user stories 1, 5 (user login and creating accounts)
+- JUnit Testing
+
+Cindy Ji
+- user story 6-8 (customer interface)
+
+Skandan Vecham
+- user story 6-8 (customer interface)
+
+Theresa Yu
+- user story 6-8 (customer interface)
+
+Howie Chen
+- owner - delete product
+- user story 4, 6-8
+- app aesthetics
